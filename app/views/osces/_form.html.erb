@@ -1,0 +1,72 @@
+
+
+<section class="p-5" style="background-color: #eaf3f5">
+        <h3 class="text-center">Novo e-OSCE</h3>
+        <div class="container">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+<%= form_with(model: osce) do |form| %>
+  <% if osce.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(osce.errors.count, "error") %> prohibited this osce from being saved:</h2>
+
+      <ul>
+        <% osce.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, 'Titulo' %>
+    <%= form.text_field :title, class: 'form-control mb-4' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resume, 'Resumo' %>
+    <%= form.text_area :resume, class: 'form-control mb-4', rows: 10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accept_comments, 'Aceitar comentários' %>
+    <%= form.check_box :accept_comments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fixed_station_order %>
+    <%= form.check_box :fixed_station_order %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+  </div>
+  <%= link_to osces_path do %>
+    <button type="button" class="btn btn-link" style="text-decoration: none">Cancelar</button>
+  <% end %>
+<% end %>
+                        </div>
+
+                        <div class="col">
+                            <div class="shadow p-1 mb-4 rounded zoom" style="background-color: #eaf3f5">
+                                <div class="row">
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <img width="100" src="https://images.educamaisbrasil.com.br/content/superior/instituicao/logo/g/ifrn.png">
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <h3> IFRN</h3>
+                                        <p>Cadastre novos circuitos para serem aplicados a partir do zero e/ou reaproveitando as estações previamente criadas.</p>
+                                    </div>
+                                </div>
+                            </div>
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-link" style="text-decoration: none">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <section>

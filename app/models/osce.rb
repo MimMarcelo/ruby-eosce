@@ -1,0 +1,2 @@
+class Osce < ApplicationRecord
+end

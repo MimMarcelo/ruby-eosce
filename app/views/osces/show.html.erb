@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @osce.title %>
+</p>
+
+<p>
+  <strong>Resume:</strong>
+  <%= @osce.resume %>
+</p>
+
+<p>
+  <strong>Accept comments:</strong>
+  <%= @osce.accept_comments %>
+</p>
+
+<p>
+  <strong>Fixed station order:</strong>
+  <%= @osce.fixed_station_order %>
+</p>
+
+<%= link_to 'Edit', edit_osce_path(@osce) %> |
+<%= link_to 'Back', osces_path %>
