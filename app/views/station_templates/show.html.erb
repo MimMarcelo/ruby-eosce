@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @station_template.name %>
+</p>
+
+<p>
+  <strong>Resume:</strong>
+  <%= @station_template.resume %>
+</p>
+
+<p>
+  <strong>Procedure:</strong>
+  <%= @station_template.procedure %>
+</p>
+
+<p>
+  <strong>Evaluation:</strong>
+  <%= @station_template.evaluation %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @station_template.score %>
+</p>
+
+<p>
+  <strong>Minutes:</strong>
+  <%= @station_template.minutes %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @station_template.level %>
+</p>
+
+<%= link_to 'Edit', edit_station_template_path(@station_template) %> |
+<%= link_to 'Back', station_templates_path %>

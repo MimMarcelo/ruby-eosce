@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Station Templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Resume</th>
+      <th>Procedure</th>
+      <th>Evaluation</th>
+      <th>Score</th>
+      <th>Minutes</th>
+      <th>Level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @station_templates.each do |station_template| %>
+      <tr>
+        <td><%= station_template.name %></td>
+        <td><%= station_template.resume %></td>
+        <td><%= station_template.procedure %></td>
+        <td><%= station_template.evaluation %></td>
+        <td><%= station_template.score %></td>
+        <td><%= station_template.minutes %></td>
+        <td><%= station_template.level %></td>
+        <td><%= link_to 'Show', station_template %></td>
+        <td><%= link_to 'Edit', edit_station_template_path(station_template) %></td>
+        <td><%= link_to 'Destroy', station_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Station Template', new_station_template_path %>

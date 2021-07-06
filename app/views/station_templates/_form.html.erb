@@ -1,0 +1,52 @@
+<%= form_with(model: station_template) do |form| %>
+  <% if station_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(station_template.errors.count, "error") %> prohibited this station_template from being saved:</h2>
+
+      <ul>
+        <% station_template.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resume %>
+    <%= form.text_area :resume %>
+  </div>
+
+  <div class="field">
+    <%= form.label :procedure %>
+    <%= form.text_area :procedure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluation %>
+    <%= form.text_area :evaluation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.number_field :score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minutes %>
+    <%= form.number_field :minutes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :level %>
+    <%= form.number_field :level %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

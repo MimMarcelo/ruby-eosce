@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_204023) do
+ActiveRecord::Schema.define(version: 2021_07_06_204951) do
+
+  create_table "station_templates", force: :cascade do |t|
+    t.string "name"
+    t.text "resume"
+    t.text "procedure"
+    t.text "evaluation"
+    t.integer "score"
+    t.integer "minutes"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false

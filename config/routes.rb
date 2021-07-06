@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :station_templates
   # route for the homepage
   root 'home#index'
 
