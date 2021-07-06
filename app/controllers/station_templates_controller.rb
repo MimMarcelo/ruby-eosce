@@ -3,7 +3,7 @@ class StationTemplatesController < ApplicationController
 
   # GET /station_templates or /station_templates.json
   def index
-    @station_templates = StationTemplate.all
+    @station_templates = StationTemplate.order('updated_at desc').all
   end
 
   # GET /station_templates/1 or /station_templates/1.json
