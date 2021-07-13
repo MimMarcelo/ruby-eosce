@@ -1,10 +1,14 @@
-<h2>Home#index</h2>
+<h2 id="oi">Home#index</h2>
 <p>Find me in app/views/home/index.html.erb</p>
 
 <% if user_signed_in? %>
   <p>Usuário logado com email: <%= current_user.email %></p>
+  <%= link_to 'Estações', station_templates_url %><span class="material-icons">add</span><br>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
+<% else %>
+  <%= link_to 'Login', new_user_session_path %><br>
+  <%= link_to 'Registrar', new_user_registration_path %>
 <% end %>
-
-<%= link_to 'Login', new_user_session_path %><br>
-<%= link_to 'Registrar', new_user_registration_path %><br>
-<%= link_to 'Estações', station_templates_url %>
+<script defer>
+$("#oi").text("oi");
+</script>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RubyEosce</title>
+    <title>AVSS</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,9 +12,10 @@
   </head>
 
   <body>
+  <%= javascript_include_tag %>
     <header class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <%= link_to root_url do %>
+        <%= link_to root_url, class: "no-decoration" do %>
           <h1 class="mr-5">AVSS</h1>
         <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,10 +26,16 @@
             <%= link_to 'Inicio', root_url, class: "nav-link active" %>
             <a class="nav-link" href="#">Funcionalidades</a>
             <a class="nav-link" href="#">Sobre</a>
-            <%= link_to 'Cadastre-se', new_user_registration_path, class: "nav-link" %>
+            <% if !user_signed_in? %>
+              <%= link_to 'Cadastre-se', new_user_registration_path, class: "nav-link" %>
+            <% end %>
           </div>
           <div class="justify-content-end">
-            <%= link_to 'Entrar', new_user_session_path, class: "btn btn-primary" %>
+            <% if user_signed_in? %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger text-light" %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-light" %>
+            <% end %>
           </div>
         </div>
       </nav>

@@ -10,6 +10,4 @@ import "channels"
 
 Rails.start()
 Turbolinks.start()
-ActiveStorage.start()
-
-require("bootstrap.bundle.min")
+ActiveStorage.start();

@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Cabin';
+    font-style: normal;
+    font-weight: 400;
+    src: url('cabin/Cabin-Regular.ttf') format('truetype'),
+    url('cabin/Cabin-Bold.ttf') format('truetype'),
+    url('cabin/Cabin-BoldItalic.ttf') format('truetype'),
+    url('cabin/Cabin-Italic.ttf') format('truetype'),
+    url('cabin/Cabin-Medium.ttf') format('truetype'),
+    url('cabin/Cabin-MediumItalic.ttf') format('truetype'),
+    url('cabin/Cabin-SemiBold.ttf') format('truetype'),
+    url('cabin/Cabin-SemiBoldItalic.ttf') format('truetype')
+    ;
+}
+*{
+    font-family: 'Cabin';
+}
+.navbar a{
+    font-weight: bold;
+}
+.nav-link:hover, .navbar a:hover{
+    text-decoration: underline;
+}
+a.no-decoration:hover{
+    text-decoration: none;
+}
+.navbar a:hover h1, .navbar h1:hover{
+    color: rgba(0,0,0,.7);
+}
+h1{
+    color: rgba(0,0,0,.5);
+}
