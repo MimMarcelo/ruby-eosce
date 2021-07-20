@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  new_station_template: "New Station"
+  save: "Save"
+  cancel: "Cancel"

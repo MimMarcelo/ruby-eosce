@@ -1,4 +1,4 @@
-<%= form_with(model: station_template) do |form| %>
+<%= form_with(model: station_template, class: 'card') do |form| %>
   <% if station_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(station_template.errors.count, "error") %> prohibited this station_template from being saved:</h2>
@@ -10,43 +10,64 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+    <div class="col p-5"><%# Inicio da 1ª coluna %>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="form-group">
+        <%= form.label :resume %>
+        <%= form.text_area :resume, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :resume %>
-    <%= form.text_area :resume %>
-  </div>
+      <div class="form-group">
+        <%= form.label :procedure %>
+        <%= form.text_area :procedure, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :procedure %>
-    <%= form.text_area :procedure %>
-  </div>
+      <div class="form-group">
+        <%= form.label :evaluation %>
+        <%= form.text_area :evaluation, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col p-5"><%# Inicio da 2ª coluna %>
+      <div class="field">
+        <%= form.label :score %>
+        <%= form.number_field :score %>
+      </div>
 
-  <div class="field">
-    <%= form.label :evaluation %>
-    <%= form.text_area :evaluation %>
-  </div>
+      <div class="field">
+        <%= form.label :minutes %>
+        <%= form.number_field :minutes %>
+      </div>
 
-  <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score %>
-  </div>
-
-  <div class="field">
-    <%= form.label :minutes %>
-    <%= form.number_field :minutes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :level %>
-    <%= form.number_field :level %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+      <div class="field">
+        <span class="material-icons f-left">whatshot</span>
+        <%= form.label :level %>        
+        <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+          <label class="btn level bg-level1">
+            <%= form.radio_button :level, 1 %>1
+          </label>
+          <label class="btn level bg-level2 active">
+            <%= form.radio_button :level, 2 %>2
+          </label>
+          <label class="btn level bg-level3">
+            <%= form.radio_button :level, 3 %>3
+          </label>
+          <label class="btn level bg-level4">
+            <%= form.radio_button :level, 4 %>4
+          </label>
+          <label class="btn level bg-level5">
+            <%= form.radio_button :level, 5 %>5
+          </label>
+        </div>
+      </div>
+    </div>
+  </div> <%# Fecha a div que divide em colunas %>
+  <div class="actions text-right p-5">
+    <%= form.submit t('save'), :class => 'btn btn-primary mr-2' %>
+    <%= link_to t('cancel'), station_templates_path, class: 'text-primary' %>
   </div>
 <% end %>

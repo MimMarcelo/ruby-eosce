@@ -30,3 +30,35 @@ a.no-decoration:hover{
 h1{
     color: rgba(0,0,0,.5);
 }
+h2{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+.btn.bg-level1{
+    background-color: #117BDD;
+}
+.btn.bg-level2{
+    background-color: #36769E;
+}
+.btn.bg-level3{
+    background-color: #EBE950;
+}
+.btn.bg-level4{
+    background-color: #9E9D3E;
+}
+.btn.bg-level5{
+    background-color: #EB544F;
+}
+.btn.level{
+    display: inline-block;
+    padding: 1em;
+    color: rgba(0,0,0,.4);
+}
+.btn.level:hover, .btn.level.active{
+    border-left-width: 3rem;
+    border-right-width: 3rem;
+    color: #000;
+    font-weight: bold;
+}
