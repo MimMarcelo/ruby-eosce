@@ -30,7 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   new_station_template: "New Station"
+  new_station_template_description: "Creat your own Stations to build custom Schedules for your students"
   save: "Save"
   cancel: "Cancel"
+  back: "Back"
+  title: "Title"
+  resume: "Resume"
+  procedure: "Procedure"
+  evaluation: "Evaluation"
+  score: "Score"
+  minutes: "Minutes"
+  level: "Level"
+  edit_station_template: "Edit Station"
+  stations_template: "Stations"
+  station_template: "Station"
+  are_you_sure: "Are you sure?"
+  features: "Features"
+  list_stations_template: "List Stations"
+  list_stations_template_description: "List all your Stations created or shared with you to manage them"

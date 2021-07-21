@@ -14,4 +14,4 @@ Turbolinks.start()
 ActiveStorage.start();
 
 require("bootstrap.bundle.min")
-require('jquery')
+require("function.input.number")

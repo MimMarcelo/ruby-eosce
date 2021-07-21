@@ -1,39 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= t('station_template') + ": " + @station_template.name %></h2>
 <p>
-  <strong>Name:</strong>
+  <strong><%= t('title') %></strong>
   <%= @station_template.name %>
 </p>
 
 <p>
-  <strong>Resume:</strong>
+  <strong><%= t('resume') %></strong>
   <%= @station_template.resume %>
 </p>
 
 <p>
-  <strong>Procedure:</strong>
+  <strong><%= t('procedure') %></strong>
   <%= @station_template.procedure %>
 </p>
 
 <p>
-  <strong>Evaluation:</strong>
+  <strong><%= t('evaluation') %></strong>
   <%= @station_template.evaluation %>
 </p>
 
 <p>
-  <strong>Score:</strong>
+  <strong><%= t('score') %></strong>
   <%= @station_template.score %>
 </p>
 
 <p>
-  <strong>Minutes:</strong>
+  <strong><%= t('minutes') %></strong>
   <%= @station_template.minutes %>
 </p>
 
 <p>
-  <strong>Level:</strong>
+  <strong><%= t('level') %></strong>
   <%= @station_template.level %>
 </p>
 
-<%= link_to 'Edit', edit_station_template_path(@station_template) %> |
-<%= link_to 'Back', station_templates_path %>
+<%= link_to t('edit'), edit_station_template_path(@station_template) %> |
+<%= link_to t('back'), station_templates_path %>

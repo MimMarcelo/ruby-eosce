@@ -53,12 +53,46 @@ h2{
 }
 .btn.level{
     display: inline-block;
-    padding: 1em;
     color: rgba(0,0,0,.4);
 }
+.btn-group > *{
+    width: 50%;
+}
 .btn.level:hover, .btn.level.active{
-    border-left-width: 3rem;
-    border-right-width: 3rem;
+    width: 300%;
     color: #000;
     font-weight: bold;
+} 
+.card .row .col-2 .material-icons{
+    display: block;
+    font-size: 6em;
+    padding: .3em 0;
+}
+.card .row .col-10 .btn-group > *{
+    font-size: 3em;
+    padding: .003em;
+    text-align: center;
+    line-height: 1.5em;
+    height: 1.5em;
+}
+.card-title{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+/* Chrome, Safari, Edge, Opera */
+input.no-arrows::-webkit-outer-spin-button,
+input.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.no-arrows[type=number] {
+  -moz-appearance: textfield;
+}
+:root{
+    --main-color: #EAF3F5;
+}
+.bg-main-color{
+    background-color: var(--main-color) !important;
 }

@@ -10,58 +10,92 @@
       </ul>
     </div>
   <% end %>
-<div class="row">
-    <div class="col p-5"><%# Inicio da 1ª coluna %>
+  <div class="row">
+    <div class="col-lg-6 p-5"><%# Inicio da 1ª coluna %>
       <div class="form-group">
-        <%= form.label :name %>
+        <%= form.label :name, t("title") %>
         <%= form.text_field :name, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :resume %>
+        <%= form.label :resume, t("resume") %>
         <%= form.text_area :resume, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :procedure %>
+        <%= form.label :procedure, t("procedure") %>
         <%= form.text_area :procedure, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :evaluation %>
+        <%= form.label :evaluation, t("evaluation") %>
         <%= form.text_area :evaluation, class: "form-control" %>
       </div>
     </div>
-    <div class="col p-5"><%# Inicio da 2ª coluna %>
-      <div class="field">
-        <%= form.label :score %>
-        <%= form.number_field :score %>
+    <div class="col-lg-6 p-5"><%# Inicio da 2ª coluna %>
+      <div class="field card bg-main-color">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">show_chart</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label :score, t("score"), class: 'card-title' %>
+              <div class="btn-group d-flex">
+                <label class="btn bg-level1 material-icons" onclick="addValue(this, -1)">chevron_left</label>
+                <%= form.number_field :score, class: 'no-arrows', min: '1' %>
+                <label class="btn bg-level5 material-icons" onclick="addValue(this, 1, false)">chevron_right</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <%= form.label :minutes %>
-        <%= form.number_field :minutes %>
+      <div class="field card bg-main-color">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">timer</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label :minutes, t("minutes"), class: 'card-title' %>
+              <div class="btn-group d-flex">
+                <label class="btn bg-level1 material-icons" onclick="addValue(this, -1)">chevron_left</label>
+                <%= form.number_field :minutes, class: 'no-arrows', min: '1' %>
+                <label class="btn bg-level5 material-icons" onclick="addValue(this, 1, false)">chevron_right</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <span class="material-icons f-left">whatshot</span>
-        <%= form.label :level %>        
-        <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
-          <label class="btn level bg-level1">
-            <%= form.radio_button :level, 1 %>1
-          </label>
-          <label class="btn level bg-level2 active">
-            <%= form.radio_button :level, 2 %>2
-          </label>
-          <label class="btn level bg-level3">
-            <%= form.radio_button :level, 3 %>3
-          </label>
-          <label class="btn level bg-level4">
-            <%= form.radio_button :level, 4 %>4
-          </label>
-          <label class="btn level bg-level5">
-            <%= form.radio_button :level, 5 %>5
-          </label>
+      <div class="field card bg-main-color">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">whatshot</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label :level, t("level"), class: 'card-title' %>
+              <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                <label class="btn level bg-level1<%= @station_template.level==1 ? ' active' : '' %>">
+                  <%= form.radio_button :level, 1 %>1
+                </label>
+                <label class="btn level bg-level2<%= @station_template.level==2 ? ' active' : '' %>">
+                  <%= form.radio_button :level, 2 %>2
+                </label>
+                <label class="btn level bg-level3<%= @station_template.level==3 ? ' active' : '' %>">
+                  <%= form.radio_button :level, 3 %>3
+                </label>
+                <label class="btn level bg-level4<%= @station_template.level==4 ? ' active' : '' %>">
+                  <%= form.radio_button :level, 4 %>4
+                </label>
+                <label class="btn level bg-level5<%= @station_template.level==5 ? ' active' : '' %>">
+                  <%= form.radio_button :level, 5 %>5
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

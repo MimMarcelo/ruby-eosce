@@ -1,14 +1,56 @@
-<h2 id="oi">Home#index</h2>
-<p>Find me in app/views/home/index.html.erb</p>
+<h2><%= t("features") %></h2>
 
 <% if user_signed_in? %>
   <p>Usuário logado com email: <%= current_user.email %></p>
-  <%= link_to 'Estações', station_templates_url %><span class="material-icons">add</span><br>
-  <%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= link_to new_station_template_path do %>
+        <div class="field card">
+            <div class="row">
+              <div class="col-2">
+                <span class="material-icons">add</span>
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= t("new_station_template") %>
+                  </h4>
+                  <div class="card-body">
+                    <p>
+                    <%= t("new_station_template_description") %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <%= link_to station_templates_url do %>
+        <div class="field card">
+            <div class="row">
+              <div class="col-2">
+                <span class="material-icons">list_alt</span>
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= t("list_stations_template") %>
+                  </h4>
+                  <div class="card-body">
+                    <p>
+                    <%= t("list_stations_template_description") %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
 <% else %>
   <%= link_to 'Login', new_user_session_path %><br>
   <%= link_to 'Registrar', new_user_registration_path %>
 <% end %>
-<script defer>
-  $("#oi").textContent = "oi";
-</script>
