@@ -31,7 +31,7 @@
 
 en:
   new_station_template: "New Station"
-  new_station_template_description: "Creat your own Stations to build custom Schedules for your students"
+  new_station_template_description: "Create your own Stations to build custom Schedules for your students"
   save: "Save"
   cancel: "Cancel"
   back: "Back"
@@ -49,3 +49,13 @@ en:
   features: "Features"
   list_stations_template: "List Stations"
   list_stations_template_description: "List all your Stations created or shared with you to manage them"
+  new_schedule: "New Schedule"
+  new_schedule_description: "Create your own custom Schedules choising specifique Stations to evaluate your students"
+  list_schedules: "List Schedules"
+  list_schedules_description: "List all your Schedules created or shared with you to manage them"
+  fixed_station_sequence: "Fixed Stations Sequence"
+  add_stations: "Add Stations"
+  add_stations_description: "You can chose any of your previous created Stations, or create new ones"
+  edit_schedule: "Edit Schedule"
+  new_schedule: "New Schedule"
+  schedule: "Schedule"

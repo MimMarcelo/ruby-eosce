@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Schedules</h2>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><%= t("title") %></th>
+      <th scope="col"><%= t("resume") %></th>
+      <th scope="col"><%= t("fixed_station_sequence") %></th>
+      <th scope="col"><%= t("show") %></th>
+      <th scope="col"><%= t("edit") %></th>
+      <th scope="col"><%= t("destroy") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.name %></td>
+        <td><%= schedule.resume %></td>
+        <td><%= schedule.fixed_station_sequence %></td>
+        <td><%= link_to 'info', schedule, class: "material-icons" %></td>
+        <td><%= link_to 'edit', edit_schedule_path(schedule), class: "material-icons" %></td>
+        <td><%= link_to 'delete', schedule, class: "material-icons", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('new_schedule'), new_schedule_path %>

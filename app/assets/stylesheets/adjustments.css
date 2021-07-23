@@ -79,6 +79,7 @@ h2{
     font-size: 1.2em;
     font-weight: bold;
 }
+/* REMOVE AS SETINHAS DOS CAMPOS input[number], class="no-arrows" */
 /* Chrome, Safari, Edge, Opera */
 input.no-arrows::-webkit-outer-spin-button,
 input.no-arrows::-webkit-inner-spin-button {
@@ -95,4 +96,19 @@ input.no-arrows[type=number] {
 }
 .bg-main-color{
     background-color: var(--main-color) !important;
+}
+.partial-view{
+    height: 25em;
+    min-height: 25em;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+thead tr{
+    background-color: var(--light);
+}
+a > .field.card *{
+    color: var(--dark);
+}
+a:hover > .field.card .material-icons{
+    text-decoration: none;
 }

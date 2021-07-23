@@ -3,10 +3,29 @@
 <% if user_signed_in? %>
   <p>Usuário logado com email: <%= current_user.email %></p>
   <div class="row">
-    <div class="col-lg-6">
-      <%= link_to new_station_template_path do %>
+    <div class="col-lg-6"> <!-- Primeira coluna -->
+    <%= link_to new_schedule_path do %> <!-- Criar Schedule -->
         <div class="field card">
-            <div class="row">
+            <div class="row no-gutters">
+              <div class="col-2">
+                <span class="material-icons">add</span>
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= t("new_schedule") %>
+                  </h4>
+                  <p class="card-text">
+                    <%= t("new_schedule_description") %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <%= link_to new_station_template_path do %><!-- Criar StationTemplate -->
+        <div class="field card">
+            <div class="row no-gutters">
               <div class="col-2">
                 <span class="material-icons">add</span>
               </div>
@@ -15,21 +34,39 @@
                   <h4 class="card-title">
                     <%= t("new_station_template") %>
                   </h4>
-                  <div class="card-body">
-                    <p>
+                  <p class="card-text">
                     <%= t("new_station_template_description") %>
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
       <% end %>
-    </div>
-    <div class="col-lg-6">
-      <%= link_to station_templates_url do %>
+    </div> <!-- Fim da primeira coluna -->
+
+    <div class="col-lg-6"> <!-- Segunda coluna -->
+    <%= link_to schedules_url do %> <!-- Listar Schedules -->
         <div class="field card">
-            <div class="row">
+            <div class="row no-gutters">
+              <div class="col-2">
+                <span class="material-icons">list_alt</span>
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= t("list_schedules") %>
+                  </h4>
+                  <p class="card-text">
+                    <%= t("list_schedules_description") %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <%= link_to station_templates_url do %> <!-- Listar StationsTemplate -->
+        <div class="field card">
+            <div class="row no-gutters">
               <div class="col-2">
                 <span class="material-icons">list_alt</span>
               </div>
@@ -38,17 +75,15 @@
                   <h4 class="card-title">
                     <%= t("list_stations_template") %>
                   </h4>
-                  <div class="card-body">
-                    <p>
+                  <p class="card-text">
                     <%= t("list_stations_template_description") %>
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
       <% end %>
-    </div>
+    </div> <!-- Fim da segunda coluna -->
   </div>
 <% else %>
   <%= link_to 'Login', new_user_session_path %><br>

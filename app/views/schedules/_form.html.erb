@@ -1,0 +1,144 @@
+<%= form_with(model: schedule, class: 'card') do |form| %>
+  <% if schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+        <% schedule.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-6 p-5"><%# Inicio da 1ª coluna %>
+      <div class="form-group">
+        <%= form.label :name, t("title") %>
+        <%= form.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group form-check">
+        <%= form.check_box :fixed_station_sequence, class: "form-check-input" %>
+        <%= form.label :fixed_station_sequence, t("fixed_station_sequence"), class: "form-check-label" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :resume, t("resume") %>
+        <%= form.text_area :resume, class: "form-control" %>
+      </div>
+    </div> <!-- Fim da primeira coluna -->
+    <div class="col-lg-6 p-5"><!-- Inicio da 2ª coluna -->
+      <%# link_to station_templates_url do %> <!-- Lista Estações --> 
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">add</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%# end %>
+      <div class="partial-view mt-5">
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">class</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">class</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">class</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">class</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field card bg-main-color">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">class</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Fim da segunda coluna -->
+  </div> <!-- Fim da "linha" -->
+  <div class="actions text-right p-5">
+    <%= form.submit t('save'), :class => 'btn btn-primary mr-2' %>
+    <%= link_to t('cancel'), schedules_url, class: 'text-primary' %>
+  </div>
+<% end %>

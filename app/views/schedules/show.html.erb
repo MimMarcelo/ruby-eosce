@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= t('schedule') + ": " + @schedule.name %></h2>
+<p>
+  <strong><%= t('name') %></strong>
+  <%= @schedule.name %>
+</p>
+
+<p>
+  <strong><%= t('resume') %></strong>
+  <%= @schedule.resume %>
+</p>
+
+<p>
+  <strong><%= t('fixed_station_sequence') %></strong>
+  <%= @schedule.fixed_station_sequence %>
+</p>
+
+<%= link_to t('edit'), edit_schedule_path(@schedule) %> |
+<%= link_to t('back'), schedules_path %>
