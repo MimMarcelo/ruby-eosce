@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Enunciado:</strong>
+  <%= @question.body %>
+</p>
+
+<ol>
+<% @question.choices.each do |choice| %>
+  <% if choice.correct %>
+    <li>
+        <span style="color: green"><%= choice.body %></span>
+        <%= link_to 'Editar', edit_choice_path(choice) %> |
+        <%= link_to 'Excluir', choice_path(choice), method: :delete %> 
+    </li>
+  <% else %>
+    <li>
+        <span style="color: red"><%= choice.body %></span>
+        <%= link_to 'Editar', edit_choice_path(choice) %> |
+        <%= link_to 'Excluir', choice_path(choice), method: :delete %> 
+    </li>
+  <% end %>
+<% end %>
+</ol>
+
+<%= link_to 'Adicionar alternativa', new_question_choice_path(@question) %>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @question.kind %>
+</p>
+
+<%= link_to 'Editar questão', edit_question_path(@question) %> |
+<%= link_to 'Voltar', questions_path %>
