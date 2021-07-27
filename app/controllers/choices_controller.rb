@@ -39,7 +39,7 @@ class ChoicesController < ApplicationController
   def update
     respond_to do |format|
       if @choice.update(choice_params)
-        format.html { redirect_to @choice, notice: "Choice was successfully updated." }
+        format.html { redirect_to @choice.question, notice: "Choice was successfully updated." }
         format.json { render :show, status: :ok, location: @choice }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,6 +52,7 @@ class ChoicesController < ApplicationController
   def destroy
     question = @choice.question
     @choice.destroy
+
     respond_to do |format|
       format.html { redirect_to question, notice: "Choice was successfully destroyed." }
       format.json { head :no_content }
