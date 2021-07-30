@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_162653) do
+ActiveRecord::Schema.define(version: 2021_07_30_173033) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2021_07_27_162653) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "station_template_questions", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "station_template_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_station_template_questions_on_question_id"
+    t.index ["station_template_id"], name: "index_station_template_questions_on_station_template_id"
+  end
+
   create_table "station_templates", force: :cascade do |t|
     t.string "name"
     t.text "resume"
@@ -74,4 +83,6 @@ ActiveRecord::Schema.define(version: 2021_07_27_162653) do
   add_foreign_key "answers", "choices"
   add_foreign_key "answers", "questions"
   add_foreign_key "choices", "questions"
+  add_foreign_key "station_template_questions", "questions"
+  add_foreign_key "station_template_questions", "station_templates"
 end
