@@ -13,6 +13,10 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+
+    if params.has_key?(:station_template_id)
+      @station_id = params[:station_template_id]
+    end
   end
 
   # GET /questions/1/edit
@@ -25,6 +29,13 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        if params.has_key?(:station_id)
+          c = StationTemplateQuestion.new
+          c.question_id = @question.id
+          c.station_template_id = params[:station_id]
+          c.save
+        end
+
         format.html { redirect_to @question, notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else

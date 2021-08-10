@@ -13,10 +13,13 @@ class StationTemplatesController < ApplicationController
   # GET /station_templates/new
   def new
     @station_template = StationTemplate.new
+    @station_template.save
+    @questions = @station_template.questions # Question.all
   end
 
   # GET /station_templates/1/edit
   def edit
+    @questions = @station_template.questions
   end
 
   # POST /station_templates or /station_templates.json

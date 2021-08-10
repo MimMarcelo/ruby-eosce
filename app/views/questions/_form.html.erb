@@ -21,6 +21,10 @@
     <%= form.number_field :kind %>
   </div>
 
+  <% if @station_id %>
+    <%= hidden_field_tag 'station_id', @station_id %>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

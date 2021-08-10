@@ -8,10 +8,15 @@ Rails.application.routes.draw do
 
   resources :schedules
   resources :station_templates
+  resources :station_templates do
+    resources :questions
+  end
+
   # route for the homepage
   root 'home#index'
 
   get 'home/index'
+
 
 
   devise_for :users
