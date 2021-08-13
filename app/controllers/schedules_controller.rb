@@ -1,9 +1,9 @@
 class SchedulesController < ApplicationController
-  before_action :set_schedule, only: %i[ show edit update destroy ]
+  before_action :set_schedule, only: %i[ show edit update destroy add_stations ]
 
   # GET /schedules or /schedules.json
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.order('updated_at desc').all
   end
 
   # GET /schedules/1 or /schedules/1.json
@@ -13,10 +13,13 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new
+    @station_templates = StationTemplate.order('updated_at desc').all
   end
 
   # GET /schedules/1/edit
   def edit
+    @station_templates = StationTemplate.order('updated_at desc').all
+    # @schedule_stations = ScheduleStation.order('updated_at desc').all
   end
 
   # POST /schedules or /schedules.json
@@ -56,6 +59,18 @@ class SchedulesController < ApplicationController
     end
   end
 
+  # GET /schedules_add/1 or /schedules_add/1.json
+  def add_stations
+    # @schedule
+    # @Station_template = StationTemplate.find(params[:station_template_id])
+
+    @schedule_stations = ScheduleStation.new
+    @schedule_stations.station_template_id = params[:station_template_id]
+    @schedule_stations.schedule_id = params[:id]
+    @schedule_stations.save
+    redirect_to edit_schedule_path(@schedule)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
@@ -64,6 +79,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:name, :resume, :fixed_station_sequence)
+      params.require(:schedule).permit(:station_template_id, :name, :resume, :fixed_station_sequence)
     end
 end
