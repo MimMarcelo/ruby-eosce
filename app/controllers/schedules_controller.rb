@@ -20,12 +20,12 @@ class SchedulesController < ApplicationController
   # GET /schedules/1/edit
   def edit
 
-    if @schedule.schedule_stations.count == 0
+    if @schedule.station_templates.count == 0
       @station_templates = StationTemplate.order('updated_at desc').all
     else
       # Retorna a lista das Station que ainda não estão associadas ao Schedule
       @station_templates = StationTemplate.where(
-        'id not IN (?)', @schedule.schedule_stations.pluck(:station_template_id)
+        'id NOT IN (?)', @schedule.station_templates.pluck(:station_template_id)
         ).order('updated_at desc')
     end
   end
@@ -94,9 +94,11 @@ class SchedulesController < ApplicationController
 
     schedule_station = @schedule.schedule_stations.where("station_template_id=?", params[:station_template_id])
     if schedule_station
-      ScheduleStation.delete(schedule_station)
+      if ScheduleStation.delete(schedule_station)
+        redirect_to edit_schedule_path(@schedule)
+      end
     end
-    redirect_to edit_schedule_path(@schedule)
+    # redirect_to edit_schedule_path(@schedule)
   end
 
   private
