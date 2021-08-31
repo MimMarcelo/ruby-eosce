@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_190036) do
+ActiveRecord::Schema.define(version: 2021_08_31_195203) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 2021_08_10_190036) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_schedules", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "schedule_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "owner"
+    t.index ["schedule_id"], name: "index_user_schedules_on_schedule_id"
+    t.index ["user_id"], name: "index_user_schedules_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -87,4 +97,6 @@ ActiveRecord::Schema.define(version: 2021_08_10_190036) do
   add_foreign_key "choices", "questions"
   add_foreign_key "schedule_stations", "schedules"
   add_foreign_key "schedule_stations", "station_templates"
+  add_foreign_key "user_schedules", "schedules"
+  add_foreign_key "user_schedules", "users"
 end

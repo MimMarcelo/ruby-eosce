@@ -39,7 +39,15 @@ class SchedulesController < ApplicationController
         else
           format.html { redirect_to edit_schedule_path(@schedule), notice: "Schedule was successfully created." }
         end
-        format.json { render :show, status: :created, location: @schedule }
+        @user_schedule = UserSchedule.new
+        @user_schedule.user_id = current_user.id
+        @user_schedule.schedule_id = @schedule.id
+        @user_schedule.owner = true
+        if @user_schedule.save
+          format.json { render :show, status: :created, location: @schedule }
+        else
+          format.html { redirect_to edit_schedule_path(@schedule), notice: "Schedule was successfully created." }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
