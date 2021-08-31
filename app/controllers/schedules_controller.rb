@@ -3,7 +3,9 @@ class SchedulesController < ApplicationController
 
   # GET /schedules or /schedules.json
   def index
-    @schedules = Schedule.order('updated_at desc').all
+    # @schedules = Schedule.order('updated_at desc').all
+    # Lista apenas os Schedules criados pela própria pessoa logada
+    @schedules = current_user.schedules
   end
 
   # GET /schedules/1 or /schedules/1.json

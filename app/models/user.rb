@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :schedules
-  has_many :schedules, through: :schedules
+  has_many :user_schedules
+  has_many :schedules, through: :user_schedules
 end
