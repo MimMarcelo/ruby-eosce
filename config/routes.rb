@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :schedules do
     resources :schedule_stations
   end
-  get 'schedules/:id/add/:station_template_id', to: 'schedules#add_stations'
+  get 'schedules/:id/add/:station_template_id', to: 'schedules#add_station', as: 'add_station'
+  get 'schedules/:id/remove/:station_template_id', to: 'schedules#remove_station', as: 'remove_station'
+
 
   resources :station_templates
   # route for the homepage

@@ -10,83 +10,42 @@
       </ul>
     </div>
   <% end %>
-
+  <%# Painel %>
   <div class="row">
     <div class="col-lg-6 p-5"><%# Inicio da 1ª coluna %>
       <div class="form-group">
         <%= form.label :name, t("title") %>
         <%= form.text_field :name, autofocus: true, class: "form-control" %>
       </div>
-
       <div class="form-group form-check">
         <%= form.check_box :fixed_station_sequence, class: "form-check-input" %>
         <%= form.label :fixed_station_sequence, t("fixed_station_sequence"), class: "form-check-label" %>
       </div>
-
       <div class="form-group">
         <%= form.label :resume, t("resume") %>
         <%= form.text_area :resume, class: "form-control" %>
       </div>
     </div> <!-- Fim da primeira coluna -->
     <div class="col-lg-6 p-5"><!-- Inicio da 2ª coluna -->
-      <div class="modal fade" id="modal_list_staions" tabindex="-1">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Stations list</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-              <% @station_templates.each do |station_template| %>
-                <%= link_to "/schedules/#{schedule.id}/add/#{station_template.id}" do %>
-                  <div class="field card bg-main-color">
-                    <div class="row">
-                      <div class="col-2">
-                        <span class="material-icons">class</span>
-                      </div>
-                      <div class="col-10">
-                        <div class="card-body">
-                          <h4 class="card-title">
-                            <%= station_template.name %>
-                          </h4>
-                          <p class="card-text">
-                            <%= station_template.resume %>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%# Botão que abre a popup que lista as Station %>
+      <div class="field card bg-main-color" data-toggle="modal" data-target="#modal_list_staions">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">add</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <h4 class="card-title">
+                <%= t("add_stations") %>
+              </h4>
+              <p class="card-text">
+                <%= t("add_stations_description") %>
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <%# link_to station_templates_url do %> <!-- Lista Estações --> 
-        <div class="field card bg-main-color" data-toggle="modal" data-target="#modal_list_staions">
-          <div class="row">
-            <div class="col-2">
-              <span class="material-icons">add</span>
-            </div>
-            <div class="col-10">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <%= t("add_stations") %>
-                </h4>
-                <p class="card-text">
-                  <%= t("add_stations_description") %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <%# end %>
+      <!-- Lista das Station associadas ao Schedule --> 
       <div class="partial-view mt-5">
         <% @schedule.station_templates.each do |station| %>
           <div class="field card bg-main-color">
@@ -102,6 +61,7 @@
                   <p class="card-text">
                     <%= station.resume %>
                   </p>
+                  <%= link_to t('remove'), remove_station_path(@schedule, station.id), class: 'btn btn-danger' %>
                 </div>
               </div>
             </div>
@@ -111,7 +71,55 @@
     </div> <!-- Fim da segunda coluna -->
   </div> <!-- Fim da "linha" -->
   <div class="actions text-right p-5">
-    <%= form.submit t('save'), :class => 'btn btn-primary mr-2' %>
+  <%#
+  O name="leave" é um atributo adicional enviado via post para 
+  verificar se deve ou não permanecer na página de edição
+  %>
+    <%= form.submit t('save'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
     <%= link_to t('cancel'), schedules_url, class: 'text-primary' %>
+  </div>
+  <%# Modal que lista as Station para serem adicionadas %>
+  <div class="modal fade" id="modal_list_staions" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Stations list</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if @schedule.id == nil %>
+          <p><%= t('please_save_before_this_action') %></p>
+          <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
+          <% else %>
+            <% @station_templates.each do |station_template| %>
+              <%= link_to add_station_path(@schedule, station_template.id) do %>
+                <div class="field card bg-main-color">
+                  <div class="row">
+                    <div class="col-2">
+                      <span class="material-icons">class</span>
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <%= station_template.name %>
+                        </h4>
+                        <p class="card-text">
+                          <%= station_template.resume %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

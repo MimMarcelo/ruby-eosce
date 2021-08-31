@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :set_schedule, only: %i[ show edit update destroy add_stations ]
+  before_action :set_schedule, only: %i[ show edit update destroy add_station remove_station]
 
   # GET /schedules or /schedules.json
   def index
@@ -13,13 +13,19 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new
-    @station_templates = StationTemplate.order('updated_at desc').all
   end
 
   # GET /schedules/1/edit
   def edit
-    @station_templates = StationTemplate.order('updated_at desc').all
-    # @schedule_stations = ScheduleStation.order('updated_at desc').all
+
+    if @schedule.schedule_stations.count == 0
+      @station_templates = StationTemplate.order('updated_at desc').all
+    else
+      # Retorna a lista das Station que ainda não estão associadas ao Schedule
+      @station_templates = StationTemplate.where(
+        'id not IN (?)', @schedule.schedule_stations.pluck(:station_template_id)
+        ).order('updated_at desc')
+    end
   end
 
   # POST /schedules or /schedules.json
@@ -28,7 +34,11 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to schedules_url, notice: "Schedule was successfully created." }
+        if params[:leave] == t("save")
+          format.html { redirect_to schedules_url, notice: "Schedule was successfully created." }
+        else
+          format.html { redirect_to edit_schedule_path(@schedule), notice: "Schedule was successfully created." }
+        end
         format.json { render :show, status: :created, location: @schedule }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,15 +69,23 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # GET /schedules_add/1 or /schedules_add/1.json
-  def add_stations
-    # @schedule
-    # @Station_template = StationTemplate.find(params[:station_template_id])
-
+  # GET /schedule_add/1 or /schedule_add/1.json
+  def add_station
+    
     @schedule_stations = ScheduleStation.new
     @schedule_stations.station_template_id = params[:station_template_id]
     @schedule_stations.schedule_id = params[:id]
     @schedule_stations.save
+    redirect_to edit_schedule_path(@schedule)
+  end
+
+  # GET /schedule_remove/1 or /schedule_remove/1.json
+  def remove_station
+
+    schedule_station = @schedule.schedule_stations.where("station_template_id=?", params[:station_template_id])
+    if schedule_station
+      ScheduleStation.delete(schedule_station)
+    end
     redirect_to edit_schedule_path(@schedule)
   end
 
@@ -79,6 +97,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:station_template_id, :name, :resume, :fixed_station_sequence)
+      params.require(:schedule).permit(:leave, :station_template_id, :name, :resume, :fixed_station_sequence)
     end
 end

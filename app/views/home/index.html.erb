@@ -2,6 +2,7 @@
 
 <% if user_signed_in? %>
   <p>Usuário logado com email: <%= current_user.email %></p>
+  <%= link_to "oi", edit_schedule_path("Marcelo") %>
   <div class="row">
     <div class="col-lg-6"> <!-- Primeira coluna -->
     <%= link_to new_schedule_path do %> <!-- Criar Schedule -->
