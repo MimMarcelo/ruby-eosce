@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_07_30_173033) do
+=======
+ActiveRecord::Schema.define(version: 2021_08_31_210447) do
+>>>>>>> main
 
   create_table "answers", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -36,6 +40,17 @@ ActiveRecord::Schema.define(version: 2021_07_30_173033) do
     t.integer "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedule_stations", force: :cascade do |t|
+    t.integer "schedule_id", null: false
+    t.integer "station_template_id", null: false
+    t.integer "score"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_id"], name: "index_schedule_stations_on_schedule_id"
+    t.index ["station_template_id"], name: "index_schedule_stations_on_station_template_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -67,6 +82,26 @@ ActiveRecord::Schema.define(version: 2021_07_30_173033) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_schedules", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "schedule_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "owner"
+    t.index ["schedule_id"], name: "index_user_schedules_on_schedule_id"
+    t.index ["user_id"], name: "index_user_schedules_on_user_id"
+  end
+
+  create_table "user_station_templates", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "station_template_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "owner"
+    t.index ["station_template_id"], name: "index_user_station_templates_on_station_template_id"
+    t.index ["user_id"], name: "index_user_station_templates_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -83,6 +118,15 @@ ActiveRecord::Schema.define(version: 2021_07_30_173033) do
   add_foreign_key "answers", "choices"
   add_foreign_key "answers", "questions"
   add_foreign_key "choices", "questions"
+<<<<<<< HEAD
   add_foreign_key "station_template_questions", "questions"
   add_foreign_key "station_template_questions", "station_templates"
+=======
+  add_foreign_key "schedule_stations", "schedules"
+  add_foreign_key "schedule_stations", "station_templates"
+  add_foreign_key "user_schedules", "schedules"
+  add_foreign_key "user_schedules", "users"
+  add_foreign_key "user_station_templates", "station_templates"
+  add_foreign_key "user_station_templates", "users"
+>>>>>>> main
 end

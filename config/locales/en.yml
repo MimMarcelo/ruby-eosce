@@ -59,3 +59,5 @@ en:
   edit_schedule: "Edit Schedule"
   new_schedule: "New Schedule"
   schedule: "Schedule"
+  please_save_before_this_action: "Please, save before this action"
+  save_and_continue: "Save and continue editing"

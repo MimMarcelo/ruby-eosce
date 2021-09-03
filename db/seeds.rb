@@ -47,3 +47,9 @@ Choice.create([
      correct: false
     }
 ])
+
+User.create!([
+  {name: "Marcelo Júnior", email: "marcelo.junior@escolar.ifrn.edu.br", password: "123321", password_confirmation: "123321", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil},
+  {name: "Ana Carolina", email: "marcelo.junior@ifrn.edu.br", password: "123321", password_confirmation: "123321", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil},
+  {name: "Gabriel Mattiuci", email: "naoresponda.marcelo@gmail.com", password: "123321", password_confirmation: "123321", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil}
+])
