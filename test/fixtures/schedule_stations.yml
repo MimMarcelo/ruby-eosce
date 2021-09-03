@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  schedule: one
+  station_template: one
+  score: 1
+  level: 1
+
+two:
+  schedule: two
+  station_template: two
+  score: 1
+  level: 1

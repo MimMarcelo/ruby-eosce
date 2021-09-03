@@ -3,7 +3,8 @@ class StationTemplatesController < ApplicationController
 
   # GET /station_templates or /station_templates.json
   def index
-    @station_templates = StationTemplate.order('updated_at desc').all
+    # @station_templates = StationTemplate.order('updated_at desc').all
+    @station_templates = current_user.station_templates
   end
 
   # GET /station_templates/1 or /station_templates/1.json
@@ -25,8 +26,17 @@ class StationTemplatesController < ApplicationController
 
     respond_to do |format|
       if @station_template.save
-        format.html { redirect_to station_templates_url, notice: "Station template was successfully created." }
-        format.json { render :show, status: :created, location: @station_template }
+        @user_station_template = UserStationTemplate.new
+        @user_station_template.user_id = current_user.id
+        @user_station_template.station_template_id = @station_template.id
+        @user_station_template.owner = true
+        if @user_station_template.save
+          format.html { redirect_to station_templates_url, notice: "Station template was successfully created." }
+          format.json { render :show, status: :created, location: @station_template }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @station_template.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @station_template.errors, status: :unprocessable_entity }
