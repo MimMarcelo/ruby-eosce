@@ -89,6 +89,10 @@ class SchedulesController < ApplicationController
     redirect_to edit_schedule_path(@schedule)
   end
 
+  def create_station
+    redirect_to edit_station_template_path(params[:id])
+  end
+
   # GET /schedule_remove/1 or /schedule_remove/1.json
   def remove_station
 

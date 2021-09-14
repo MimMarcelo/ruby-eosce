@@ -90,8 +90,8 @@
         </div>
         <div class="modal-body">
           <% if @schedule.id == nil %>
-          <p><%= t('please_save_before_this_action') %></p>
-          <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
+            <p><%= t('please_save_before_this_action') %></p>
+            <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
           <% else %>
             <% @station_templates.each do |station_template| %>
               <%= link_to add_station_path(@schedule, station_template.id) do %>
@@ -117,6 +117,7 @@
           <% end %>
         </div>
         <div class="modal-footer">
+            <%= link_to t('new_station_template'), create_station_path(@schedule.id), class: 'btn btn-primary' %>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

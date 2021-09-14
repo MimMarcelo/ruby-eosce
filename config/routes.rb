@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :station_templates do
     resources :questions
   end
+  get 'station_templates/new/:schedule_id', to: 'station_templates#new', as: 'create_station'
 
   # route for the homepage
   root 'home#index'
