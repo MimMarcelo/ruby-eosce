@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
   def index
     # @schedules = Schedule.order('updated_at desc').all
     # Lista apenas os Schedules criados pela própria pessoa logada
-    @schedules = current_user.schedules
+    @schedules = current_user.schedules.order('updated_at desc').all
   end
 
   # GET /schedules/1 or /schedules/1.json
@@ -21,11 +21,11 @@ class SchedulesController < ApplicationController
   def edit
 
     if @schedule.station_templates.count == 0
-      @station_templates = StationTemplate.order('updated_at desc').all
+      @station_templates = current_user.station_templates.order('updated_at desc').all
     else
       # Retorna a lista das Station que ainda não estão associadas ao Schedule
-      @station_templates = StationTemplate.where(
-        'id NOT IN (?)', @schedule.station_templates.pluck(:station_template_id)
+      @station_templates = current_user.station_templates.where(
+        'station_templates.id NOT IN (?)', @schedule.station_templates.pluck(:station_template_id)
         ).order('updated_at desc')
     end
   end
@@ -87,6 +87,10 @@ class SchedulesController < ApplicationController
     @schedule_stations.schedule_id = params[:id]
     @schedule_stations.save
     redirect_to edit_schedule_path(@schedule)
+  end
+
+  def create_station
+    redirect_to edit_station_template_path(params[:id])
   end
 
   # GET /schedule_remove/1 or /schedule_remove/1.json
