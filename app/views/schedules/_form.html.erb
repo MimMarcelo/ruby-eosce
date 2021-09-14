@@ -117,7 +117,9 @@
           <% end %>
         </div>
         <div class="modal-footer">
+          <% if @schedule.id != nil %>
             <%= link_to t('new_station_template'), create_station_path(@schedule.id), class: 'btn btn-primary' %>
+          <% end %>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
