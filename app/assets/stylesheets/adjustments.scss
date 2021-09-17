@@ -2,14 +2,14 @@
     font-family: 'Cabin';
     font-style: normal;
     font-weight: 400;
-    src: url('cabin/Cabin-Regular.ttf'),
-    url('cabin/Cabin-Bold.ttf'),
-    url('cabin/Cabin-BoldItalic.ttf'),
-    url('cabin/Cabin-Italic.ttf'),
-    url('cabin/Cabin-Medium.ttf'),
-    url('cabin/Cabin-MediumItalic.ttf'),
-    url('cabin/Cabin-SemiBold.ttf'),
-    url('cabin/Cabin-SemiBoldItalic.ttf')
+    src: font-url('cabin/Cabin-Regular.ttf'),
+    font-url('cabin/Cabin-Bold.ttf'),
+    font-url('cabin/Cabin-BoldItalic.ttf'),
+    font-url('cabin/Cabin-Italic.ttf'),
+    font-url('cabin/Cabin-Medium.ttf'),
+    font-url('cabin/Cabin-MediumItalic.ttf'),
+    font-url('cabin/Cabin-SemiBold.ttf'),
+    font-url('cabin/Cabin-SemiBoldItalic.ttf')
     ;
 }
 *{
