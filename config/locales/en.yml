@@ -37,8 +37,10 @@ en:
   back: "Back"
   cancel: "Cancel"
   characters_minimum: "characters minimum"
+  destroy: "Destroy"
   didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
   didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+  edit: "Edit"
   edit_schedule: "Edit Schedule"
   edit_station_template: "Edit Station"
   email: "e-mail"
@@ -70,11 +72,10 @@ en:
   save: "Save"
   save_and_continue: "Save and continue editing"
   schedule: "Schedule"
+  schedules: "Schedules"
   score: "Score"
+  show: "Show"
   sign_in_with: "Sign in with"
   station_template: "Station"
   stations_template: "Stations"
   title: "Title"
-
-
-
