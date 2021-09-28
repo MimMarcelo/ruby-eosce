@@ -31,6 +31,12 @@
             <% end %>
           </div>
           <div class="justify-content-end">
+          <label class="material-icons" for="language">language</label>
+          <select id="language"
+          onchange="changeLocale(this,'<%= request.base_url %>','<%= request.original_url %>')">
+            <option value="pt">PT</option>
+            <option value="en"<%= I18n.locale == :en ? " selected": ""%>>EN</option>
+            </select>
             <% if user_signed_in? %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger text-light" %>
             <% else %>

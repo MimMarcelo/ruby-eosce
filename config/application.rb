@@ -11,6 +11,10 @@ module RubyEosce
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Define o idioma padrão da aplicação para PT
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.available_locales = [:en, :pt]
+    config.i18n.default_locale = :pt
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

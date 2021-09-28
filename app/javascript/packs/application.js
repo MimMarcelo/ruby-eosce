@@ -15,3 +15,4 @@ ActiveStorage.start();
 
 require("bootstrap.bundle.min")
 require("function.input.number")
+require("function.change.locale")

@@ -1,0 +1,63 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+pt:
+  add_stations: "Adicionar estações"
+  add_stations_description: "Você pode escolher qualquer das suas estações criadas previamente ou criar novas"
+  are_you_sure: "Confirma?"
+  back: "Voltar"
+  cancel: "Cancelar"
+  edit_schedule: "Editar situação problema"
+  edit_station_template: "Editar estação"
+  evaluation: "Avaliação"
+  features: "Funcionalidades"
+  fixed_station_sequence: "Sequencia das estações fixa"
+  level: "Nível"
+  list_schedules: "Listar situações problema"
+  list_schedules_description: "Listar todas situações problema criadas ou compartilhadas com voçê para gerenciá-las"
+  list_stations_template: "Listar estações"
+  list_stations_template_description: "Listar todas estações criadas ou compartilhadas com você para gerenciá-las"
+  minutes: "Minutos"
+  new_schedule: "Nova situação problema"
+  new_schedule_description: "Criar suas próprias situações problema escolhendo estações específicas para avaliar seus estudantes"
+  new_station_template: "Nova estação"
+  new_station_template_description: "Criar suas próprias estações para construir situações problema personalizadas para seus estudantes"
+  please_save_before_this_action: "Por favor, salve antes de realizar esta ação"
+  procedure: "Procedimento"
+  resume: "Resumo"
+  save: "Salvar"
+  save_and_continue: "Salvar e continuar editando"
+  schedule: "Situação problema"
+  score: "Pontos"
+  station_template: "Estação"
+  stations_template: "Estações"
+  title: "Título"
+
