@@ -23,24 +23,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav mr-auto">
-            <%= link_to 'Inicio', root_url, class: "nav-link active" %>
-            <a class="nav-link" href="#">Funcionalidades</a>
-            <a class="nav-link" href="#">Sobre</a>
+            <%= link_to t('home'), root_url, class: "nav-link active" %>
+            <a class="nav-link" href="#"><%= t('features') %></a>
+            <a class="nav-link" href="#"><%= t('about') %></a>
             <% if !user_signed_in? %>
-              <%= link_to 'Cadastre-se', new_user_registration_path, class: "nav-link" %>
+              <%= link_to t('register'), new_user_registration_path, class: "nav-link" %>
             <% end %>
           </div>
           <div class="justify-content-end">
-          <label class="material-icons" for="language">language</label>
-          <select id="language"
-          onchange="changeLocale(this,'<%= request.base_url %>','<%= request.original_url %>')">
-            <option value="pt">PT</option>
-            <option value="en"<%= I18n.locale == :en ? " selected": ""%>>EN</option>
+            <label class="material-icons" for="language">language</label>
+            <select id="language"
+            onchange="changeLocale(this,'<%= request.base_url %>','<%= request.original_url %>')">
+              <option value="pt">PT</option>
+              <option value="en"<%= I18n.locale == :en ? " selected": ""%>>EN</option>
             </select>
             <% if user_signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger text-light" %>
+              <%= link_to t('logout'), destroy_user_session_path, method: :delete, class: "btn btn-danger text-light" %>
             <% else %>
-              <%= link_to 'Login', new_user_session_path, class: "btn btn-primary text-light" %>
+              <%= link_to t('login'), new_user_session_path, class: "btn btn-primary text-light" %>
             <% end %>
           </div>
         </div>

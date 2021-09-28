@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 pt:
+  about: "Sobre"
   add_stations: "Adicionar estações"
   add_stations_description: "Você pode escolher qualquer das suas estações criadas previamente ou criar novas"
   are_you_sure: "Confirma?"
@@ -40,11 +41,14 @@ pt:
   evaluation: "Avaliação"
   features: "Funcionalidades"
   fixed_station_sequence: "Sequencia das estações fixa"
+  home: "Início"
   level: "Nível"
   list_schedules: "Listar situações problema"
   list_schedules_description: "Listar todas situações problema criadas ou compartilhadas com voçê para gerenciá-las"
   list_stations_template: "Listar estações"
   list_stations_template_description: "Listar todas estações criadas ou compartilhadas com você para gerenciá-las"
+  login: "Entrar"
+  logout: "Sair"
   minutes: "Minutos"
   new_schedule: "Nova situação problema"
   new_schedule_description: "Criar suas próprias situações problema escolhendo estações específicas para avaliar seus estudantes"
@@ -52,6 +56,7 @@ pt:
   new_station_template_description: "Criar suas próprias estações para construir situações problema personalizadas para seus estudantes"
   please_save_before_this_action: "Por favor, salve antes de realizar esta ação"
   procedure: "Procedimento"
+  register: "Cadastre-se"
   resume: "Resumo"
   save: "Salvar"
   save_and_continue: "Salvar e continuar editando"
@@ -60,4 +65,5 @@ pt:
   station_template: "Estação"
   stations_template: "Estações"
   title: "Título"
+
 
