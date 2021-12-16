@@ -37,4 +37,72 @@
 </p>
 
 <%= link_to t('edit'), edit_station_template_path(@station_template) %> |
-<%= link_to t('back'), station_templates_path %>
+<%= link_to t('back'), station_templates_path %> |
+
+<% @station_template.questions.each do |question| %>
+  <div class="question-box">
+    <p class="question-body"><%= question.body %></p>
+    <ul>
+      <% question.choices.each do |choice| %>
+        <li><%= choice.body %></li>
+      <% end %>
+    </ul>
+      <div id="<%= question.id %>" class="hidden-choice">
+        <%= form_with(model: Choice.new, url: new_foo_path(@station_template, question.id)) do |form| %>
+          <% if false %>
+          <div class="field">
+            <%= form.label :question_id %>
+            <%= form.text_field :question_id, value: question.id %>
+          </div>
+          <% end %>
+
+          <%= form.hidden_field :question_id, value: question.id %>
+
+          <div class="field">
+            <%= form.label :body %>
+            <%= form.text_area :body %>
+          </div>
+
+          <div class="field">
+            <%= form.label :correct %>
+            <%= form.check_box :correct %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>
+  <button class="new-question-button" onclick="normal(<%= question.id %>)">
+    Cancelar
+  </button>
+      </div>
+      <a onclick="mudar(<%= question.id %>)">Adicionar nova alternativa</a>
+  </div>
+<% end %>
+
+<%= link_to new_station_template_question_path(@station_template) do %>
+  <button class="new-question-button">
+    Adicionar Questão
+  </button>
+<% end %>
+
+<script>
+    function mudar(id) {
+       /* console.log(id);
+        var v = "<input type=\"text\">";
+
+        v += "<input type=\"checkbox\"> correta?";
+        v += "<button>Criar</button>";
+        v += "<button onclick=\"normal(" + id + ")\">Cancelar</button>";
+
+        var n = document.getElementById(id);
+        n.innerHTML = v;*/
+        var n = document.getElementById(id);
+        n.className = "visible-choice";
+    }
+
+    function normal(id) {
+        var n = document.getElementById(id);
+        n.className = "hidden-choice";
+    }
+</script>

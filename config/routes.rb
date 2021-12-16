@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     get 'home/index'
 
+    post 'station/:station_id/question/:question_id', to: 'choices#foo', as: 'new_foo'
 
 
     devise_for :users

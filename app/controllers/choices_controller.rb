@@ -35,6 +35,22 @@ class ChoicesController < ApplicationController
     end
   end
 
+  def foo
+    @choice = Choice.new(choice_params)
+    @station = StationTemplate.find(params[:station_id])
+    @question = params[:question_id]
+
+    respond_to do |format|
+      if @choice.save
+        format.html { redirect_to @station, notice: "Choice was successfully created." }
+        format.json { render :show, status: :created, location: @choice }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @choice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /choices/1 or /choices/1.json
   def update
     respond_to do |format|
