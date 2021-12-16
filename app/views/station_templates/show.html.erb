@@ -43,7 +43,7 @@
   <div class="question-box">
     <p class="question-body"><%= question.body %></p>
     <ul>
-      <% question.choices.each do |choice| %>
+      <% question.choices.shuffle.each do |choice| %>
         <li><%= choice.body %></li>
       <% end %>
     </ul>
