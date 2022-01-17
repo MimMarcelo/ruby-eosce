@@ -77,5 +77,8 @@ en:
   show: "Show"
   sign_in_with: "Sign in with"
   station_template: "Station"
+  station_template_created: "Station was created"
+  station_template_destroyed: "Station template was successfully destroyed"
+  station_template_updated: "Station was successfully updated"
   stations_template: "Stations"
   title: "Title"

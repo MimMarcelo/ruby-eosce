@@ -77,5 +77,8 @@ pt:
   show: "Exibir"
   sign_in_with: "Cadastre-se com"
   station_template: "Estação"
+  station_template_created: "Estação criada"
+  station_template_destroyed: "Estação excluida com sucesso"
+  station_template_updated: "Estação atualizada com sucesso"
   stations_template: "Estações"
   title: "Título"
