@@ -91,11 +91,11 @@ class StationTemplatesController < ApplicationController
 
   # DELETE /station_templates/1 ou /station_templates/1.json
   def destroy
-    @user_station_template = current_user.station_templates.delete(
-      @station_template)
-    #@user_station_template.destroy
-    @station_template.destroy
-
+    ActiveRecord::Base.transaction do
+      @station_template.users.destroy_all
+      @station_template.schedule_stations.destroy_all
+      @station_template.destroy
+    end
     respond_to do |format|
       format.html { redirect_to station_templates_url, notice: t("station_template_destroyed") }
       format.json { head :no_content }
