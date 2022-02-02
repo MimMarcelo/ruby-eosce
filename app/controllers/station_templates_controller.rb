@@ -91,7 +91,9 @@ class StationTemplatesController < ApplicationController
 
   # DELETE /station_templates/1 ou /station_templates/1.json
   def destroy
-
+    @user_station_template = current_user.station_templates.delete(
+      @station_template)
+    #@user_station_template.destroy
     @station_template.destroy
 
     respond_to do |format|
