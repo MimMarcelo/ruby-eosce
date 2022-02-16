@@ -1,4 +1,6 @@
 class StationTemplate < ApplicationRecord
+  validates :name, length: {maximum:40}
+  
   has_many :station_template_questions, dependent: :destroy
   has_many :questions, through: :station_template_questions
   

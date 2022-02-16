@@ -1,4 +1,4 @@
-<%= form_with(model: station_template, class: 'card') do |form| %>
+<%= form_with(model: station_template) do |form| %>
   <% if station_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(station_template.errors.count, "error") %> prohibited this station_template from being saved:</h2>
@@ -10,50 +10,58 @@
       </ul>
     </div>
   <% end %>
+  <%= render partial: "shared/form/wide/textfieldwithcount",
+    locals: {
+      icon: "title", 
+      label: "title", 
+      field: :name, 
+      form: form,
+      atual: @station_template.name ? @station_template.name.length : "0",
+      total: @station_template._validators[:name][0].options[:maximum]
+    }
+  %>
+  <%= render partial: "shared/form/wide/textarea",
+    locals: {
+      icon: "description", 
+      label: "resume", 
+      field: :resume, 
+      form: form
+    }
+  %>
+  <%= render partial: "shared/form/wide/textarea",
+    locals: {
+      icon: "account_tree", 
+      label: "procedure", 
+      field: :procedure, 
+      form: form
+    }
+  %>
+  <%= render partial: "shared/form/wide/textarea",
+    locals: {
+      icon: "whatshot", 
+      label: "evaluation", 
+      field: :evaluation, 
+      form: form
+    }
+  %>
+  <div class="field card mb-4">
+    <div class="row no-gutters">
+        <div class="col-2 text-center">
+        <span class="material-icons">attach_file</span>
+        </div>
+        <div class="col-10">
+        <div class="card-body">
+            <%= form.label "attachments", t("attachments"), class: 'card-title' %>
+            <% #form.text_field "attachments", class: "form-control", autofocus: true %>
+        </div>
+        </div>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-lg-6 p-5"><%# Inicio da 1ª coluna %>
-      <div class="form-group">
-        <%= form.label :name, t("title") %>
-        <%= form.text_field :name, class: "form-control", autofocus: true %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :resume, t("resume") %>
-        <%= form.text_area :resume, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :procedure, t("procedure") %>
-        <%= form.text_area :procedure, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :evaluation, t("evaluation") %>
-        <%= form.text_area :evaluation, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col-lg-6 p-5"><%# Inicio da 2ª coluna %>
-      <div class="field card bg-main-color">
-        <div class="row">
-          <div class="col-2">
-            <span class="material-icons">show_chart</span>
-          </div>
-          <div class="col-10">
-            <div class="card-body">
-              <%= form.label :score, t("score"), class: 'card-title' %>
-              <div class="btn-group d-flex">
-                <label class="btn bg-level1 material-icons" onclick="addValue(this, -1)">chevron_left</label>
-                <%= form.number_field :score, class: 'no-arrows', min: '1' %>
-                <label class="btn bg-level5 material-icons" onclick="addValue(this, 1, false)">chevron_right</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field card bg-main-color">
+    <div class="col-lg-6"><%# Inicio da 1ª coluna %>
+      
+      <div class="field card">
         <div class="row">
           <div class="col-2">
             <span class="material-icons">timer</span>
@@ -71,7 +79,7 @@
         </div>
       </div>
 
-      <div class="field card bg-main-color">
+      <div class="field card">
         <div class="row">
           <div class="col-2">
             <span class="material-icons">whatshot</span>
@@ -101,6 +109,51 @@
         </div>
       </div>
     </div>
+
+    <div class="col-lg-6"><%# Inicio da 2ª coluna %>
+      <div class="field card">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">show_chart</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label :score, t("score"), class: 'card-title' %>
+              <div class="btn-group d-flex">
+                <label class="btn bg-level1 material-icons" onclick="addValue(this, -1)">chevron_left</label>
+                <%= form.number_field :score, class: 'no-arrows', min: '1' %>
+                <label class="btn bg-level5 material-icons" onclick="addValue(this, 1, false)">chevron_right</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field card">
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">feedback</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label "feedback", t("feedback"), class: 'card-title' %>
+              <div class="custom-control custom-switch text-center">
+                <%= form.check_box "feedback", class: 'custom-control-input' %>
+                <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                  <label class="btn level bg-level1<%# @station_template.feedback==true ? ' active' : '' %>">
+                    <%# form.radio_button :level, 1 %>Sim
+                  </label>
+                  <label class="btn level bg-level5<%# @station_template.feedback==false ? ' active' : '' %>">
+                    <%# form.radio_button :level, 2 %>Não
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div> <%# Fecha a div que divide em colunas %>
 
   <%
@@ -115,10 +168,13 @@
 =end%>
 
   <div class="actions text-right p-5">
+    <%= form.submit t('save'), class: 'btn btn-primary mr-2' %>
     <% if @schedule_id then %>
       <%= hidden_field_tag 'schedule_id', @schedule_id %>
+      <%= link_to t('cancel'), edit_schedule_path(@schedule_id), class: 'text-primary' %>
+    <% else %>
+      <%= link_to t('cancel'), station_templates_path, class: 'text-primary' %>
     <% end %>
-    <%= form.submit t('save'), class: 'btn btn-primary mr-2' %>
-    <%= link_to t('cancel'), station_templates_path, class: 'text-primary' %>
+    
   </div>
 <% end %>
