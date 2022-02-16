@@ -10,12 +10,14 @@
       </ul>
     </div>
   <% end %>
-  <%= render partial: "shared/form/wide/textfield",
+  <%= render partial: "shared/form/wide/textfieldwithcount",
     locals: {
       icon: "title", 
       label: "title", 
       field: :name, 
-      form: form
+      form: form,
+      atual: @station_template.name ? @station_template.name.length : "0",
+      total: @station_template._validators[:name][0].options[:maximum]
     }
   %>
   <%= render partial: "shared/form/wide/textarea",

@@ -1,0 +1,18 @@
+<div class="field card mb-4">
+    <div class="row no-gutters">
+        <div class="col-2 text-center">
+        <span class="material-icons"><%= icon %></span>
+        </div>
+        <div class="col-10">
+        <div class="card-body">
+            <%= form.label field, t(label), class: 'card-title' %>
+            <%= form.text_field field, class: "form-control",
+                autofocus: true, maxlength: total,
+                :onkeyup => "countCharacters(this, "+total.to_s+")" %>
+            <small id="name-count" class="form-text text-muted text-right">
+                <%= atual %>/<%= total %>
+            </small>
+        </div>
+        </div>
+    </div>
+</div>
