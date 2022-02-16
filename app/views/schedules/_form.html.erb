@@ -15,7 +15,9 @@
     <div class="col-lg-6 p-5"><%# Inicio da 1ª coluna %>
       <div class="form-group">
         <%= form.label :name, t("title") %>
-        <%= form.text_field :name, autofocus: true, class: "form-control" %>
+        <%= form.text_field :name, autofocus: true, class: "form-control", :onkeyup => "countCharacters(this, 40)" %>
+        <small id="name-count" class="form-text text-muted text-right">
+          <%= @schedule.name ? @schedule.name.length : "0" %>/<%= @schedule._validators[:name][0].options[:maximum] %></small>
       </div>
       <div class="form-group form-check">
         <%= form.check_box :fixed_station_sequence, class: "form-check-input" %>
