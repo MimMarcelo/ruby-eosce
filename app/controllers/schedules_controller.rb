@@ -72,7 +72,12 @@ class SchedulesController < ApplicationController
 
   # DELETE /schedules/1 or /schedules/1.json
   def destroy
-    @schedule.destroy
+    ActiveRecord::Base.transaction do
+      @schedule.users.destroy_all
+      @schedule.schedule_stations.destroy_all
+      @schedule.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to schedules_url, notice: "Schedule was successfully destroyed." }
       format.json { head :no_content }
