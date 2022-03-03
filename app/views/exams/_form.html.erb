@@ -1,0 +1,39 @@
+<%= form_with(model: exam) do |form| %>
+  <% if exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+        <% exam.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field "user_name", value:current_user.name, :disabled => true %>
+    <%= form.hidden_field :user_id, value:current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :schedule_id %>
+    <%= form.text_field "schedule_name", value:exam.schedule.name, :disabled => true %>
+    <%= form.hidden_field :schedule_id, value:exam.schedule.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.datetime_select :start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end %>
+    <%= form.datetime_select :end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

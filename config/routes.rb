@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   scope "(:locale)" do
+
+    resources :exams
+    get 'exams/new/:schedule_id', to: 'exams#new', as: 'create_exam'
+
     resources :answers
     resources :choices
 
