@@ -7,7 +7,7 @@ class Exam < ApplicationRecord
     @code += "-"
     @code += schedule_id.to_s(16).rjust(4, '0')
     @code += "-"
-    @code += (created_at.to_i).to_s(16).last(5) # Pega apenas os últimos 5 caracteres
+    @code += id.to_s(16).rjust(4, '0')
 
     return @code.upcase
   end

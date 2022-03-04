@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Exams</h1>
+<h2><%= t("exams") %></h2>
 
-<table>
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Schedule</th>
-      <th>Start</th>
-      <th>End</th>
-      <th colspan="3"></th>
+      <th scope="col"><%= t("code") %></th>
+      <th scope="col"><%= t("schedule") %></th>
+      <th scope="col"><%= t("start") %></th>
+      <th scope="col"><%= t("end") %></th>
+      <th scope="col"><%= t("edit") %></th>
+      <th scope="col"><%= t("destroy") %></th>
     </tr>
   </thead>
 
@@ -17,12 +18,11 @@
     <% @exams.each do |exam| %>
       <tr>
         <td><%= exam.code %></td>
-        <td><%= exam.schedule_id %></td>
-        <td><%= exam.start %></td>
-        <td><%= exam.end %></td>
-        <td><%= link_to 'Show', exam %></td>
-        <td><%= link_to 'Edit', edit_exam_path(exam) %></td>
-        <td><%= link_to 'Destroy', exam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= exam.schedule.name %></td>
+        <td><%= exam.start.strftime(t("date_format")) %></td>
+        <td><%= exam.end.strftime(t("date_format")) %></td>
+        <td><%= link_to 'edit', edit_exam_path(exam), class: "material-icons" %></td>
+        <td><%= link_to 'delete', exam, class: "material-icons", method: :delete, data: { confirm: t("are_you_sure") } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,30 +10,48 @@
       </ul>
     </div>
   <% end %>
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "person", 
+      label: "owner", 
+      field: :user_id, 
+      value: current_user.name,
+      form: form
+    }
+  %>
+  <%= form.hidden_field :user_id, value:current_user.id %>
+  
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "title", 
+      label: "title", 
+      field: :schedule_id, 
+      value: exam.schedule.name,
+      form: form
+    }
+  %>
+  <%= form.hidden_field :schedule_id, value:exam.schedule.id %>
+  
+  <%= render partial: "shared/form/wide/datetime",
+    locals: {
+      icon: "event_available", 
+      label: "start", 
+      field: :start, 
+      form: form
+    }
+  %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field "user_name", value:current_user.name, :disabled => true %>
-    <%= form.hidden_field :user_id, value:current_user.id %>
-  </div>
+  <%= render partial: "shared/form/wide/datetime",
+    locals: {
+      icon: "event_busy", 
+      label: "end", 
+      field: :end, 
+      form: form
+    }
+  %>
 
-  <div class="field">
-    <%= form.label :schedule_id %>
-    <%= form.text_field "schedule_name", value:exam.schedule.name, :disabled => true %>
-    <%= form.hidden_field :schedule_id, value:exam.schedule.id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start %>
-    <%= form.datetime_select :start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end %>
-    <%= form.datetime_select :end %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions text-right p-5">
+    <%= form.submit t('save'), class: 'btn btn-primary mr-2' %>
+    <%= link_to t('cancel'), exams_path, class: 'text-primary' %>
   </div>
 <% end %>
