@@ -40,6 +40,7 @@ en:
   cancel: "Cancel"
   characters_minimum: "characters minimum"
   code: "Code"
+  code_exemple: "Exam code AAAA-BBBB-CCCC"
   date_format: "%F %H:%M"
   destroy: "Destroy"
   didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"

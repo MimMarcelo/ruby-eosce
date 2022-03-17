@@ -55,7 +55,7 @@
     <%# Modal que solicita o código do exame %>
     <div class="modal fade" id="modal_apply_exam" tabindex="-1">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-main-color">
           <div class="modal-header">
             <h5 class="modal-title"><%= t('exam_code') %></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -63,10 +63,17 @@
             </button>
           </div>
           <div class="modal-body">
-            <%= form_with(url: exams_path(:id), method: 'get', local: true) do %>
-              <%= text_field_tag(:id) %>
-              <%= submit_tag("Search") %>
-            <% end %>
+            <div class="form-group">
+              <label for="exam_code"><%= t('code') %></label>
+              <input type="text" class="form-control"
+                id="exam_code"
+                placeholder="<%= t('code_exemple') %>">
+              <div class="text-center m-3">
+                <input type="button" class="btn btn-primary"
+                  value="<%= t('apply') %>"
+                  onclick="redirect('<%= exams_url %>', $('#exam_code').val())">
+              <div>
+            <div>
           <div>
         </div>
       </div>

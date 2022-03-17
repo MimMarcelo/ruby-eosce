@@ -40,6 +40,7 @@ pt:
   cancel: "Cancelar"
   characters_minimum: "caracteres no mínimo"
   code: "Código"
+  code_exemple: "Código da aplicação AAAA-BBBB-CCCC"
   date_format: "%d/%m/%Y %H:%M"
   destroy: "Excluir"
   didnt_receive_confirmation_instructions: "Não recebeu as instruções de confirmação?"
