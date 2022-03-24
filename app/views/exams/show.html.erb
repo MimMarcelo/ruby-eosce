@@ -1,24 +1,85 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @exam.user_id %>
-</p>
-
-<p>
-  <strong>Schedule:</strong>
-  <%= @exam.schedule_id %>
-</p>
-
-<p>
-  <strong>Start:</strong>
-  <%= @exam.start %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @exam.end %>
-</p>
-
-<%= link_to 'Edit', edit_exam_path(@exam) %> |
-<%= link_to 'Back', exams_path %>
+<h2><%= @schedule.name %></h2>
+<%= render partial: "shared/card",
+  locals: {
+    icon: "description", 
+    title: "resume", 
+    desc: @schedule.resume
+  }
+%>
+<div class="field card">
+  <div class="row">
+    <div class="col-2">
+      <span class="material-icons">class</span>
+    </div>
+    <div class="col-10">
+      <div class="card-body">
+        <h4 class="card-title">
+          <%= t("stations_template") %>
+        </h4>
+        <p class="card-text">
+          <%= t("fixed_station_sequence")+": "+ t(@schedule.fixed_station_sequence.to_s) %>
+        </p>  
+        <p class="card-text">
+          <%= t("stations_template")+": "+@schedule.station_templates.size.to_i.to_s %>
+        </p>  
+        <p class="card-text">
+          <%= t("total_time")+": "+@schedule.total_time.to_s %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-right">
+  <button class="btn btn-primary mr-4" data-toggle="modal" data-target="#modal_candidate_data">
+    <%= t('start_exam') %>
+  </button>
+  <%= link_to t('cancel'), home_index_url, class: 'text-primary' %>
+</div>
+<%# Modal que solicita os dados do candidato %>
+<div class="modal fade" id="modal_candidate_data" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content bg-main-color">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t('exam_inscription') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span class="font-weight-bold d-block"><%= @schedule.name %></span>
+          <span class="font-weight-bold"><%= t('professors') %></span>
+          <ul>
+            <%# @exam.user.each do |user| %>
+              <li><%= @exam.user.name %></li>
+            <%# end %>
+          </ul>
+        </div>
+        <div class="form-group">
+          <label for="name"><%= t('name') %></label>
+          <input type="text" class="form-control"
+            id="name"
+            placeholder="<%= t('names_exemple') %>">
+        <div>
+        <div class="form-group">
+          <label for="e_mail"><%= t('email') %></label>
+          <input type="text" class="form-control"
+            id="e_mail"
+            placeholder="<%= t('emails_exemple') %>">
+        <div>
+        <div class="form-group">
+          <label for="number_id"><%= t('number_id') %></label>
+          <input type="text" class="form-control"
+            id="number_id"
+            placeholder="<%= t('numbers_id_exemple') %>">
+        <div>
+        <div class="text-center m-3">
+          <input type="button" class="btn btn-primary"
+            value="<%= t('start_exam') %>">
+        <div>
+      <div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: %i[ show edit update destroy ]
+  before_action :set_exam, only: %i[ edit update destroy ]
 
   # GET /exams or /exams.json
   def index
@@ -9,6 +9,24 @@ class ExamsController < ApplicationController
 
   # GET /exams/1 or /exams/1.json
   def show
+    
+    parts = params[:id].split("-")
+    @user = User.find(Exam.decode(parts[0]))
+    @schedule = Schedule.find(Exam.decode(parts[1]))
+    @exam = Exam.find(Exam.decode(parts[2]))
+    # if @user = nil || @schedule = nil || @exam = nil then
+    #   respond_to do |type|
+    #     type.html { redirect_to "errors/error_404", :status => 404 }
+    #     type.json  { render :nothing => true, :status => 404 }
+    #   end
+    # end
+    if DateTime.now < @exam.start || DateTime.now > @exam.end then
+      respond_to do |type|
+        type.html { redirect_to "errors/error_404", :status => 404 }
+        type.json  { render :nothing => true, :status => 404 }
+      end
+    end
+
   end
 
   # GET /exams/new

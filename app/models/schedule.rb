@@ -5,4 +5,13 @@ class Schedule < ApplicationRecord
 
     has_many :user_schedules
     has_many :users, through: :user_schedules
+
+    def total_time
+        @time = 0
+
+        self.station_templates.each do |station|
+            @time += station.minutes
+        end
+        return @time
+    end
 end

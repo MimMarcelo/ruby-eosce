@@ -11,4 +11,8 @@ class Exam < ApplicationRecord
 
     return @code.upcase
   end
+
+  def self.decode(code)
+    return code.to_i(16)
+  end
 end
