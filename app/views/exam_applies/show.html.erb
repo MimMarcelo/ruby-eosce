@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @schedule.name %></h2>
+<p>
+  Aluno: <%= @exam_apply.student_name %>
+</p>
+<div class="row">
+  <% quebra_linha = 0 %>
+  <% @schedule.station_templates.each do |station| %>
+    <div class="field card col-md m-2">
+      <div class="row">
+        <div class="col-2">
+          <span class="material-icons">class</span>
+        </div>
+        <div class="col-7">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= station.name %>
+            </h4>
+            <p class="card-text">
+              <%= station.resume %>
+            </p>
+          </div>
+        </div>
+        <div class="col-3 pt-4">
+          <%= link_to t('begin'), station,
+            class: 'btn btn-primary mt-5 align-bottom' %>
+        </div>
+      </div>
+    </div>
+    <% quebra_linha+= 1 %>
+    <% if(quebra_linha%2 == 0) then %>
+      <div class="w-100"></div>
+    <% end %>
+  <% end %>
+</div>
+
+<%# link_to 'Edit', edit_exam_apply_path(@exam_apply) %>
+<%# link_to 'Back', exam_applies_path %>

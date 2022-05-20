@@ -57,28 +57,7 @@
             <%# end %>
           </ul>
         </div>
-        <div class="form-group">
-          <label for="name"><%= t('name') %></label>
-          <input type="text" class="form-control"
-            id="name"
-            placeholder="<%= t('names_exemple') %>">
-        <div>
-        <div class="form-group">
-          <label for="e_mail"><%= t('email') %></label>
-          <input type="text" class="form-control"
-            id="e_mail"
-            placeholder="<%= t('emails_exemple') %>">
-        <div>
-        <div class="form-group">
-          <label for="number_id"><%= t('number_id') %></label>
-          <input type="text" class="form-control"
-            id="number_id"
-            placeholder="<%= t('numbers_id_exemple') %>">
-        <div>
-        <div class="text-center m-3">
-          <input type="button" class="btn btn-primary"
-            value="<%= t('start_exam') %>">
-        <div>
+        <%= render 'exam_applies/form', exam_apply: @exam_apply %>
       <div>
     </div>
   </div>

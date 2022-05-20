@@ -27,6 +27,8 @@ class ExamsController < ApplicationController
       end
     end
 
+    @exam_apply = ExamApply.new
+
   end
 
   # GET /exams/new

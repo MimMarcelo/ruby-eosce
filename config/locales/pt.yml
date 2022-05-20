@@ -37,6 +37,7 @@ pt:
   are_you_sure: "Confirma?"
   attachments: "Anexos"
   back: "Voltar"
+  begin: "Iniciar"
   cancel: "Cancelar"
   characters_minimum: "caracteres no mínimo"
   code: "Código"
