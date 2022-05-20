@@ -63,6 +63,8 @@ pt:
   forgot_your_password: "Esqueceu sua senha?"
   home: "Início"
   level: "Nível"
+  list_exams: "Lista de exames"
+  list_exams_description: "Listar todos exames criadas ou compartilhadas com você para gerenciá-las"
   list_schedules: "Listar situações problema"
   list_schedules_description: "Listar todas situações problema criadas ou compartilhadas com voçê para gerenciá-las"
   list_stations_template: "Lista de estações"
