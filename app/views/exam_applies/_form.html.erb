@@ -11,6 +11,7 @@
     </div>
   <% end %>
   <%= form.hidden_field :exam_id, value:@exam.id %>
+  <%= form.hidden_field :station_turn, value: @exam.schedule.fixed_station_sequence ? 0 : -1 %>
 
   <div class="field">
     <%= form.label :student_name, t("name") %>

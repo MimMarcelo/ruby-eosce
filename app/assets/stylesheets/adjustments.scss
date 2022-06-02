@@ -103,6 +103,9 @@ input.no-arrows[type=number] {
     overflow-y: auto;
     overflow-x: hidden;
 }
+.disabled{
+    background-color: rgba(0,0,0,.3) !important;
+}
 thead tr{
     background-color: var(--light);
 }

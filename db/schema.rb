@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_20_121050) do
+ActiveRecord::Schema.define(version: 2022_06_02_181023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_121050) do
     t.string "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "station_turn"
     t.index ["exam_id"], name: "index_exam_applies_on_exam_id"
   end
 

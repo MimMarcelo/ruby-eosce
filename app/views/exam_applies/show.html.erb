@@ -6,8 +6,16 @@
 </p>
 <div class="row">
   <% quebra_linha = 0 %>
-  <% @schedule.station_templates.each do |station| %>
-    <div class="field card col-md m-2">
+  <% fixed_order = @schedule.fixed_station_sequence %>
+
+  <% @schedule.station_templates.each_with_index do |station, i| %>
+    <%
+    habilitado = true
+    if (fixed_order && @exam_apply.station_turn!=i) then
+      habilitado = false
+    end
+    %>
+    <div class="field card col-md m-2<%= !habilitado ? ' disabled': '' %>">
       <div class="row">
         <div class="col-2">
           <span class="material-icons">class</span>
@@ -23,8 +31,10 @@
           </div>
         </div>
         <div class="col-3 pt-4">
-          <%= link_to t('begin'), station,
-            class: 'btn btn-primary mt-5 align-bottom' %>
+          <% if(habilitado) then%>
+            <%= link_to t('begin'), station,
+              class: 'btn btn-primary mt-5 align-bottom' %>
+          <% end %>
         </div>
       </div>
     </div>

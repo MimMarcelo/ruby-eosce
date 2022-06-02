@@ -67,6 +67,6 @@ class ExamAppliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exam_apply_params
-      params.require(:exam_apply).permit(:exam_id, :student_name, :student_email, :student_id)
+      params.require(:exam_apply).permit(:exam_id, :student_name, :student_email, :student_id, :station_turn)
     end
 end
