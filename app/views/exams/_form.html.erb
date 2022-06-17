@@ -1,0 +1,57 @@
+<%= form_with(model: exam) do |form| %>
+  <% if exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+        <% exam.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "person", 
+      label: "owner", 
+      field: :user_id, 
+      value: current_user.name,
+      form: form
+    }
+  %>
+  <%= form.hidden_field :user_id, value:current_user.id %>
+  
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "title", 
+      label: "title", 
+      field: :schedule_id, 
+      value: exam.schedule.name,
+      form: form
+    }
+  %>
+  <%= form.hidden_field :schedule_id, value:exam.schedule.id %>
+  
+  <%= render partial: "shared/form/wide/datetime",
+    locals: {
+      icon: "event_available", 
+      label: "start", 
+      field: :start, 
+      form: form
+    }
+  %>
+
+  <%= render partial: "shared/form/wide/datetime",
+    locals: {
+      icon: "event_busy", 
+      label: "end", 
+      field: :end, 
+      form: form
+    }
+  %>
+
+  <div class="actions text-right p-5">
+    <%= form.submit t('save'), class: 'btn btn-primary mr-2' %>
+    <%= link_to t('cancel'), exams_path, class: 'text-primary' %>
+  </div>
+<% end %>

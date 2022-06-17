@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exam apply:</strong>
+  <%= @station_apply.exam_apply_id %>
+</p>
+
+<p>
+  <strong>Time left:</strong>
+  <%= @station_apply.time_left %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @station_apply.finished %>
+</p>
+
+<!-- BOTÃO QUE VOLTA PARA O EXAME EM APLICAÇÃO -->
+<%= form_with(model: @station_apply) do |form| %>
+  <%= form.hidden_field :finished, value:true %>
+  <%= hidden_field_tag(:exam_apply_id, @station_apply.exam_apply_id) %>
+  <%= hidden_field_tag(:exam, true) %>
+  <%= form.submit t("finish_station") %>
+<% end %>
+<%# link_to 'Edit', edit_station_apply_path(@station_apply) %>
+<%# link_to 'Back', station_applies_path %>

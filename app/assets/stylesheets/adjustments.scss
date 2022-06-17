@@ -103,6 +103,9 @@ input.no-arrows[type=number] {
     overflow-y: auto;
     overflow-x: hidden;
 }
+.disabled{
+    background-color: rgba(0,0,0,.3) !important;
+}
 thead tr{
     background-color: var(--light);
 }
@@ -111,4 +114,9 @@ a > .field.card *{
 }
 a:hover > .field.card .material-icons{
     text-decoration: none;
+}
+@media screen and (min-width: 720px){
+    .d-md-flex{
+        line-height:4em;
+    }
 }

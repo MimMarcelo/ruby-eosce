@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_many :user_station_templates
   has_many :station_templates, through: :user_station_templates
+
+  has_many :exams
 end
