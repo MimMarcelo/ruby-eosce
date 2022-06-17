@@ -60,6 +60,7 @@ pt:
   exams: "Exames"
   false: "Não"
   features: "Funcionalidades"
+  finish_station: "Finalizar estação"
   fixed_station_sequence: "Sequencia das estações fixa"
   forgot_your_password: "Esqueceu sua senha?"
   home: "Início"

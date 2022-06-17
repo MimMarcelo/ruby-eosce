@@ -1,0 +1,32 @@
+<%= form_with(model: station_apply) do |form| %>
+  <% if station_apply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(station_apply.errors.count, "error") %> prohibited this station_apply from being saved:</h2>
+
+      <ul>
+        <% station_apply.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exam_apply_id %>
+    <%= form.text_field :exam_apply_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_left %>
+    <%= form.text_field :time_left %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finished %>
+    <%= form.check_box :finished %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :station_applies
   resources :exam_applies
   scope "(:locale)" do
 

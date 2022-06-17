@@ -10,6 +10,24 @@ class ExamAppliesController < ApplicationController
   def show
     @exam = Exam.find(@exam_apply.exam_id)
     @schedule = Schedule.find(@exam.schedule_id)
+    
+    @exam_apply.station_applies = StationApply.where("exam_apply_id=?", @exam_apply.id)
+    if @exam_apply.station_applies.count == 0 then
+      @schedule.station_templates.each do |station|
+        @station_apply = StationApply.new
+        @station_apply.exam_apply_id = @exam_apply.id
+        @station_apply.station_template_id = station.id
+        @station_apply.time_left = station.minutes
+        @station_apply.finished = false
+        @station_apply.save
+        @exam_apply.station_applies.push(@station_apply)
+      end
+    end
+    @exam_apply.station_applies.each do |station|
+      if(station.finished) then
+        @exam_apply.station_turn += 1
+      end
+    end
   end
 
   # GET /exam_applies/new
