@@ -91,30 +91,25 @@
           </button>
         </div>
         <div class="modal-body">
-          <% if @schedule.id == nil %>
-            <p><%= t('please_save_before_this_action') %></p>
-            <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
-          <% else %>
-            <% @station_templates.each do |station_template| %>
-              <%= link_to add_station_path(@schedule, station_template.id) do %>
-                <div class="field card bg-main-color">
-                  <div class="row">
-                    <div class="col-2">
-                      <span class="material-icons">class</span>
-                    </div>
-                    <div class="col-10">
-                      <div class="card-body">
-                        <h4 class="card-title">
-                          <%= station_template.name %>
-                        </h4>
-                        <p class="card-text">
-                          <%= station_template.resume %>
-                        </p>
-                      </div>
+          <% @station_templates.each do |station_template| %>
+            <%= link_to add_station_path(@schedule, station_template.id) do %>
+              <div class="field card bg-main-color">
+                <div class="row">
+                  <div class="col-2">
+                    <span class="material-icons">class</span>
+                  </div>
+                  <div class="col-10">
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <%= station_template.name %>
+                      </h4>
+                      <p class="card-text">
+                        <%= station_template.resume %>
+                      </p>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>

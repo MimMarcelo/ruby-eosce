@@ -15,6 +15,8 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new
+    @schedule.id = 0
+    @station_templates = current_user.station_templates.order('updated_at desc').all
   end
 
   # GET /schedules/1/edit
@@ -30,6 +32,14 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def add_user
+    @user_schedule = UserSchedule.new
+    @user_schedule.user_id = current_user.id
+    @user_schedule.schedule_id = @schedule.id
+    @user_schedule.owner = true
+    return @user_schedule.save
+  end
+
   # POST /schedules or /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
@@ -41,11 +51,8 @@ class SchedulesController < ApplicationController
         else
           format.html { redirect_to edit_schedule_path(@schedule), notice: "Schedule was successfully created." }
         end
-        @user_schedule = UserSchedule.new
-        @user_schedule.user_id = current_user.id
-        @user_schedule.schedule_id = @schedule.id
-        @user_schedule.owner = true
-        if @user_schedule.save
+        
+        if add_user
           format.json { render :show, status: :created, location: @schedule }
         else
           format.html { redirect_to edit_schedule_path(@schedule), notice: "Schedule was successfully created." }
@@ -86,7 +93,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedule_add/1 or /schedule_add/1.json
   def add_station
-    
+
     @schedule_stations = ScheduleStation.new
     @schedule_stations.station_template_id = params[:station_template_id]
     @schedule_stations.schedule_id = params[:id]
@@ -113,7 +120,15 @@ class SchedulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = Schedule.find(params[:id])
+      if params[:id].to_s == "0" then
+        @schedule = Schedule.new
+        if @schedule.save then
+          params[:id] = @schedule.id
+          add_user
+        end
+      else
+        @schedule = Schedule.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
