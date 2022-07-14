@@ -8,6 +8,7 @@
       <th scope="col"><%= t("title") %></th>
       <th scope="col"><%= t("resume") %></th>
       <th scope="col"><%= t("fixed_station_sequence") %></th>
+      <th scope="col"><%= t("apply") %></th>
       <th scope="col"><%= t("show") %></th>
       <th scope="col"><%= t("edit") %></th>
       <th scope="col"><%= t("destroy") %></th>
@@ -20,6 +21,7 @@
         <td><%= schedule.name %></td>
         <td><%= schedule.resume %></td>
         <td><%= schedule.fixed_station_sequence %></td>
+        <td><%= link_to 'task', create_exam_url(schedule), class: "material-icons" %></td>
         <td><%= link_to 'info', schedule, class: "material-icons" %></td>
         <td><%= link_to 'edit', edit_schedule_path(schedule), class: "material-icons" %></td>
         <td><%= link_to 'delete', schedule, class: "material-icons", method: :delete, data: { confirm: t('are_you_sure') } %></td>

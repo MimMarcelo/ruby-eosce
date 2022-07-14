@@ -1,0 +1,37 @@
+<%= form_with(model: exam_apply) do |form| %>
+  <% if exam_apply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam_apply.errors.count, "error") %> prohibited this exam_apply from being saved:</h2>
+
+      <ul>
+        <% exam_apply.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :exam_id, value:@exam.id %>
+  <%= form.hidden_field :station_turn, value: @exam.schedule.fixed_station_sequence ? 0 : -1 %>
+
+  <div class="field">
+    <%= form.label :student_name, t("name") %>
+    <%= form.text_field :student_name, class: "form-control",
+      placeholder: t('names_exemple') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_email, t('email') %>
+    <%= form.text_field :student_email, class: "form-control",
+      placeholder: t('emails_exemple') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_id, t('number_id') %>
+    <%= form.text_field :student_id, class: "form-control",
+      placeholder: t('numbers_id_exemple') %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit t('start_exam'), class: "btn btn-primary" %>
+  </div>
+<% end %>

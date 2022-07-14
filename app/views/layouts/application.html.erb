@@ -40,6 +40,9 @@
             <% if user_signed_in? %>
               <%= link_to t('logout'), destroy_user_session_path, method: :delete, class: "btn btn-danger text-light" %>
             <% else %>
+              <button class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#modal_apply_exam">
+                <%= t('exam') %>
+              </button>
               <%= link_to t('login'), new_user_session_path, class: "btn btn-primary text-light" %>
             <% end %>
           </div>
@@ -49,5 +52,31 @@
     <main class="container">
       <%= yield %>
     </main>
+    <%# Modal que solicita o código do exame %>
+    <div class="modal fade" id="modal_apply_exam" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-main-color">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= t('exam_code') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exam_code"><%= t('code') %></label>
+              <input type="text" class="form-control"
+                id="exam_code"
+                placeholder="<%= t('code_exemple') %>">
+              <div class="text-center m-3">
+                <input type="button" class="btn btn-primary"
+                  value="<%= t('apply') %>"
+                  onclick="redirect('<%= exams_url %>', $('#exam_code').val())">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

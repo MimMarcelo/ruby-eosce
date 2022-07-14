@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @schedule.name %></h2>
+<p>
+  Aluno: <%= @exam_apply.student_name %>
+</p>
+<div class="row">
+  <% quebra_linha = 0 %>
+  <% fixed_order = @schedule.fixed_station_sequence %>
+
+  <% @schedule.station_templates.each_with_index do |station, i| %>
+    <%
+    habilitado = true
+    if (fixed_order && @exam_apply.station_turn!=i) then
+      habilitado = false
+    end
+    %>
+    <div class="field card col-md m-2<%= !habilitado ? ' disabled': '' %>">
+      <div class="row">
+        <div class="col-2">
+          <span class="material-icons">class</span>
+        </div>
+        <div class="col-7">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= station.name %>
+            </h4>
+            <p class="card-text">
+              <%= station.resume %>
+            </p>
+          </div>
+        </div>
+        <div class="col-3 pt-4">
+          <% if(habilitado) then%>
+            <button class="btn btn-primary mt-5 align-bottom" data-toggle="modal" data-target="#modal_apply_station<%= i %>">
+              <%= t('begin') %>
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%# Modal que apresenta os dados da Station selecionada %>
+    <div class="modal fade" id="modal_apply_station<%= i %>" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-main-color">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= t('station_template') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= station.name %>
+            <%= station.score.to_s + t("score") %>
+
+            <%= t("resume") %>
+            <p>
+            <%= station.resume %>
+            </p>
+            <%= t("procedure") %>
+            <p>
+            <%= station.procedure %>
+            </p>
+            <%= station.minutes.to_s + t("minutes") %>
+
+            <%= link_to t('begin'), @exam_apply.station_applies[i],
+              class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% quebra_linha+= 1 %>
+    <% if(quebra_linha%2 == 0) then %>
+      <div class="w-100"></div>
+    <% end %>
+  <% end %>
+</div>
+
+<%# link_to 'Edit', edit_exam_apply_path(@exam_apply) %>
+<%# link_to 'Back', exam_applies_path %>

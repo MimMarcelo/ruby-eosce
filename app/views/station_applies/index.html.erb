@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Station Applies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exam apply</th>
+      <th>Time left</th>
+      <th>Finished</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @station_applies.each do |station_apply| %>
+      <tr>
+        <td><%= station_apply.exam_apply_id %></td>
+        <td><%= station_apply.time_left %></td>
+        <td><%= station_apply.finished %></td>
+        <td><%= link_to 'Show', station_apply %></td>
+        <td><%= link_to 'Edit', edit_station_apply_path(station_apply) %></td>
+        <td><%= link_to 'Destroy', station_apply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Station Apply', new_station_apply_path %>

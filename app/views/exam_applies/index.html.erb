@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Exam Applies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Student name</th>
+      <th>Student email</th>
+      <th>Student</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exam_applies.each do |exam_apply| %>
+      <tr>
+        <td><%= exam_apply.exam_id %></td>
+        <td><%= exam_apply.student_name %></td>
+        <td><%= exam_apply.student_email %></td>
+        <td><%= exam_apply.student_id %></td>
+        <td><%= link_to 'Show', exam_apply %></td>
+        <td><%= link_to 'Edit', edit_exam_apply_path(exam_apply) %></td>
+        <td><%= link_to 'Destroy', exam_apply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exam Apply', new_exam_apply_path %>

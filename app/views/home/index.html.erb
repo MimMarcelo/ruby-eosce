@@ -83,6 +83,25 @@
             </div>
           </div>
       <% end %>
+      <%= link_to exams_url do %> <!-- Listar Exams -->
+        <div class="field card">
+            <div class="row no-gutters">
+              <div class="col-2">
+                <span class="material-icons">list_alt</span>
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= t("list_exams") %>
+                  </h4>
+                  <p class="card-text">
+                    <%= t("list_exams_description") %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
     </div> <!-- Fim da segunda coluna -->
   </div>
 <% else %>
