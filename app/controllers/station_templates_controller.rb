@@ -113,7 +113,7 @@ class StationTemplatesController < ApplicationController
     # Só permite uma lista limitada de parâmetros confiáveis
     def station_template_params
 
-      params.require(:station_template).permit(:name, :resume, :procedure, :evaluation, :score, :minutes, :level)
+      params.require(:station_template).permit(:name, :resume, :procedure, :evaluation, :score, :minutes, :level, :feedback)
     end
 
     # Realiza o vínculo entre estação criada e o usuário (dono ou colaborador)

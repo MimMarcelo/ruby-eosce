@@ -140,11 +140,11 @@
               <div class="custom-control custom-switch text-center">
                 <%= form.check_box "feedback", class: 'custom-control-input' %>
                 <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
-                  <label class="btn level bg-level1<%# @station_template.feedback==true ? ' active' : '' %>">
-                    <%# form.radio_button :level, 1 %>Sim
+                  <label class="btn level bg-level1<%= @station_template.feedback==1 ? ' active' : '' %>">
+                    <%= form.radio_button :feedback, 1 %>Sim
                   </label>
-                  <label class="btn level bg-level5<%# @station_template.feedback==false ? ' active' : '' %>">
-                    <%# form.radio_button :level, 2 %>Não
+                  <label class="btn level bg-level5<%= @station_template.feedback==0 ? ' active' : '' %>">
+                    <%= form.radio_button :feedback, 0 %>Não
                   </label>
                 </div>
               </div>
