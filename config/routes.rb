@@ -15,10 +15,14 @@ Rails.application.routes.draw do
 
 
     resources :station_templates
-    resources :station_templates do
-      resources :questions
-    end
+    #resources :station_templates do
+    #  resources :questions
+    #end
     get 'station_templates/new/:schedule_id', to: 'station_templates#new', as: 'create_station'
+
+    get 'station_template_questions/:station_id', to: 'station_template_questions#index', as: 'station_template_questions'
+    post 'station_template/:station_id/add_question/:question_id', to: 'station_template_questions#create', as: 'add_question_to_station_template'
+    delete 'station_template/:station_id/remove_question/:question_id', to: 'station_template_questions#destroy', as: "remove_question_from_station_template"
 
     # route for the homepage
     root 'home#index'

@@ -1,3 +1,24 @@
 <h2><%= t("edit_station_template") %></h2>
 
 <%= render 'form', station_template: @station_template %>
+
+<h2>Questões</h2>
+
+<div style="text-align: center; margin: auto">
+<table style="margin: auto">
+
+  <% @station_template.questions.each_with_index do |question, idx| %>
+      <div class="question-card">
+        <p><span style="font-weight: bold">Questão <%= idx + 1 %>: </span><%= question.body %></p>
+
+        <ul>
+        <% question.choices.each do |a| %>
+            <li><%= a.body %></li>
+        <% end %>
+        </ul>
+        <%= link_to 'Remover', remove_question_from_station_template_path(@station_template, question), method: :delete, class: 'btn btn-danger text-light'%>
+      </div>
+  <% end %>
+
+<%= link_to "Adicionar Questão", station_template_questions_path(@station_template), class: "btn btn-primary text-light" %>
+</div>

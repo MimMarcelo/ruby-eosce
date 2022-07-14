@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Questions</h1>
+
+<% if @station.questions.count > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Kind</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @station.questions.each do |question| %>
+      <tr>
+        <td><%= question.body %></td>
+        <td><%= question.kind %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remover', remove_question_from_station_template_path(@station, question), method: :delete, class: 'btn btn-danger text-light'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Kind</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.body %></td>
+        <td><%= question.kind %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Adicionar', add_question_to_station_template_path(@station, question), method: :post, class: 'btn btn-primary text-light'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>
+<%= link_to 'Voltar', edit_station_template_path(@station), class: 'btn btn-primary text-light' %>
