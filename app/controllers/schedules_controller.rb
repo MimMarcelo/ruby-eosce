@@ -120,15 +120,7 @@ class SchedulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      if params[:id].to_s == "0" then
-        @schedule = Schedule.new
-        if @schedule.save then
-          params[:id] = @schedule.id
-          add_user
-        end
-      else
-        @schedule = Schedule.find(params[:id])
-      end
+      @schedule = Schedule.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
