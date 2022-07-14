@@ -34,16 +34,6 @@ ActiveRecord::Schema.define(version: 2022_07_14_114042) do
     t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
-  create_table "exam_answers", force: :cascade do |t|
-    t.bigint "exam_id", null: false
-    t.string "student_name"
-    t.string "student_email"
-    t.string "student_number_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["exam_id"], name: "index_exam_answers_on_exam_id"
-  end
-
   create_table "exam_applies", force: :cascade do |t|
     t.bigint "exam_id", null: false
     t.string "student_name"
@@ -161,7 +151,6 @@ ActiveRecord::Schema.define(version: 2022_07_14_114042) do
   add_foreign_key "answers", "choices"
   add_foreign_key "answers", "questions"
   add_foreign_key "choices", "questions"
-  add_foreign_key "exam_answers", "exams"
   add_foreign_key "exam_applies", "exams"
   add_foreign_key "exams", "schedules"
   add_foreign_key "exams", "users"
