@@ -30,23 +30,43 @@
     </div> <!-- Fim da primeira coluna -->
     <div class="col-lg-6 p-5"><!-- Inicio da 2ª coluna -->
       <%# Botão que abre a popup que lista as Station %>
-      <div class="field card bg-main-color" data-toggle="modal" data-target="#modal_list_staions">
-        <div class="row">
-          <div class="col-2">
-            <span class="material-icons">add</span>
-          </div>
-          <div class="col-10">
-            <div class="card-body">
-              <h4 class="card-title">
-                <%= t("add_stations") %>
-              </h4>
-              <p class="card-text">
-                <%= t("add_stations_description") %>
-              </p>
+      <% if(@schedule.id == 0) then %>
+        <div class="field card bg-main-color pointer" data-toggle="modal" data-target="#modal_list_staions">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">warning</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("warning") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("save_schedule_to_proceed") %>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% else %>
+        <div class="field card bg-main-color pointer" data-toggle="modal" data-target="#modal_list_staions">
+          <div class="row">
+            <div class="col-2">
+              <span class="material-icons">add</span>
+            </div>
+            <div class="col-10">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <%= t("add_stations") %>
+                </h4>
+                <p class="card-text">
+                  <%= t("add_stations_description") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <!-- Lista das Station associadas ao Schedule --> 
       <div class="partial-view mt-5">
         <% @schedule.station_templates.each do |station| %>
@@ -77,6 +97,7 @@
   O name="leave" é um atributo adicional enviado via post para 
   verificar se deve ou não permanecer na página de edição
   %>
+    <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2' %>
     <%= form.submit t('save'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
     <%= link_to t('cancel'), schedules_url, class: 'text-primary' %>
   </div>
@@ -91,30 +112,25 @@
           </button>
         </div>
         <div class="modal-body">
-          <% if @schedule.id == nil %>
-            <p><%= t('please_save_before_this_action') %></p>
-            <%= form.submit t('save_and_continue'), :class => 'btn btn-primary mr-2', :name => 'leave' %>
-          <% else %>
-            <% @station_templates.each do |station_template| %>
-              <%= link_to add_station_path(@schedule, station_template.id) do %>
-                <div class="field card bg-main-color">
-                  <div class="row">
-                    <div class="col-2">
-                      <span class="material-icons">class</span>
-                    </div>
-                    <div class="col-10">
-                      <div class="card-body">
-                        <h4 class="card-title">
-                          <%= station_template.name %>
-                        </h4>
-                        <p class="card-text">
-                          <%= station_template.resume %>
-                        </p>
-                      </div>
+          <% @station_templates.each do |station_template| %>
+            <%= link_to add_station_path(@schedule, station_template.id) do %>
+              <div class="field card bg-main-color">
+                <div class="row">
+                  <div class="col-2">
+                    <span class="material-icons">class</span>
+                  </div>
+                  <div class="col-10">
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <%= station_template.name %>
+                      </h4>
+                      <p class="card-text">
+                        <%= station_template.resume %>
+                      </p>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>
