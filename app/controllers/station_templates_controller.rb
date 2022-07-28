@@ -49,22 +49,19 @@ class StationTemplatesController < ApplicationController
       if !@station_template.save
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @station_template.errors, status: :unprocessable_entity }
-        return
       end
 
       # Em caso de ERROS para realizar a associação entre a Station criada
       # e o usuário logado (dono da Station)
-      if !user_association(@station_template.id, current_user.id, true)
-        format.html { render :new, status: :unprocessable_entity }
+      if !user_association(current_user.id, @station_template.id, true)
         format.json { render json: @station_template.errors, status: :unprocessable_entity }
-        return
+        format.html { render :new, status: :unprocessable_entity }
       end
 
       # Se o schedule_id estiver informado,
       # redirecionar para a tela de edição do Schedule
-      if params[:schedule_id]
+      if params[:schedule_id].present? then
         format.html { redirect_to add_station_path(params[:schedule_id], @station_template.id), notice: t("station_template_created") }
-        return
       end
       
       format.html { redirect_to station_templates_url, notice: t("station_template_created") }
@@ -81,7 +78,6 @@ class StationTemplatesController < ApplicationController
       if !@station_template.update(station_template_params)
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @station_template.errors, status: :unprocessable_entity }
-        return
       end
 
       format.html { redirect_to station_templates_url, notice: t("station_template_updated") }
@@ -106,23 +102,20 @@ class StationTemplatesController < ApplicationController
 
     # Usa callbacks para compartilhar setup ou associações entre ações
     def set_station_template
-
       @station_template = StationTemplate.find(params[:id])
     end
 
     # Só permite uma lista limitada de parâmetros confiáveis
     def station_template_params
-
       params.require(:station_template).permit(:name, :resume, :procedure, :evaluation, :score, :minutes, :level, :feedback)
     end
 
     # Realiza o vínculo entre estação criada e o usuário (dono ou colaborador)
-    def user_association(station_id, user_id, owner = false)
-
+    def user_association(user_id, station_template_id, owner = false)
       @user_station_template = UserStationTemplate.new
       @user_station_template.user_id = user_id
-      @user_station_template.station_template_id = station_id
+      @user_station_template.station_template_id = station_template_id
       @user_station_template.owner = owner
-      return @user_station_template.save
+      @user_station_template.save
     end
 end
