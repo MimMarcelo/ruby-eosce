@@ -118,6 +118,20 @@ a:hover > .field.card .material-icons{
 .pointer{
     cursor: pointer;
 }
+.countdown{
+    position: fixed;
+    right: 0;
+    top: 80%;
+    background-color: #86D900;
+    font-size: 2em;
+    font-weight: bolder;
+    padding: .5em;
+    width: 150px;
+}
+.countdown > span{
+    display: inline-block;
+    width: 60px;
+}
 @media screen and (min-width: 720px){
     .d-md-flex{
         line-height:4em;

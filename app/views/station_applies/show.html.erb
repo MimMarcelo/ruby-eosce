@@ -1,26 +1,94 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Exam apply:</strong>
-  <%= @station_apply.exam_apply_id %>
-</p>
-
-<p>
-  <strong>Time left:</strong>
-  <%= @station_apply.time_left %>
-</p>
-
-<p>
-  <strong>Finished:</strong>
-  <%= @station_apply.finished %>
-</p>
+<h2><%= @station.name %></h2>
 
 <!-- BOTÃO QUE VOLTA PARA O EXAME EM APLICAÇÃO -->
 <%= form_with(model: @station_apply) do |form| %>
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "description", 
+      label: "resume", 
+      field: :resume, 
+      value: @station.resume,
+      form: form
+    }
+  %>
+  <%= render partial: "shared/form/wide/textfield-disabled",
+    locals: {
+      icon: "whatshot", 
+      label: "evaluation", 
+      field: :evaluation, 
+      value: @station.evaluation,
+      form: form
+    }
+  %>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="field card"><%# Anexos %>
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">attach_file</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label "attachments", t("attachments"), class: 'card-title' %>
+              <div>
+                <div>Anexo 1</div>
+                <div>Anexo 2</div>
+                <div>Anexo 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="field card"><%# Tempo %>
+        <div class="row">
+          <div class="col-2">
+            <span class="material-icons">timer</span>
+          </div>
+          <div class="col-10">
+            <div class="card-body">
+              <%= form.label :minutes, t("minutes"), class: 'card-title' %>
+              <div class="btn-group d-flex">
+                <label><%= @station_apply.time_left %>:00 min</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3><%= t('questions') %></h3>
+  <div class="modal fade" id="modal_end_station" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-main-color">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= t('feedback') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Em uma escala de 1 (+fácil) a 5 (+difícil), como você categoriza essa estação?</p>
+            <%= form.submit t("finish_station"), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <%= form.hidden_field :finished, value:true %>
   <%= hidden_field_tag(:exam_apply_id, @station_apply.exam_apply_id) %>
   <%= hidden_field_tag(:exam, true) %>
-  <%= form.submit t("finish_station") %>
+  <input type="button" value="<%= t('finish_station') %>"
+    class="btn btn-primary"
+    data-toggle="modal" data-target="#modal_end_station">
+  <%# form.submit t("finish_station"), class: "btn btn-primary" %>
 <% end %>
 <%# link_to 'Edit', edit_station_apply_path(@station_apply) %>
 <%# link_to 'Back', station_applies_path %>
+<div class="countdown">
+  <script>clockStart("#countdown", "#modal_end_station")</script>
+  <span id="countdown"><%= @station_apply.time_left %>:00</span>min
+</div>

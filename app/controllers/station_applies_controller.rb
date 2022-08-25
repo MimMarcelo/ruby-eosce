@@ -8,6 +8,7 @@ class StationAppliesController < ApplicationController
 
   # GET /station_applies/1 or /station_applies/1.json
   def show
+    @station = StationTemplate.find(@station_apply.station_template_id)
   end
 
   # GET /station_applies/new
